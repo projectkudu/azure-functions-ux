@@ -134,6 +134,11 @@ const Platform: React.FC<FormikProps<AppSettingsFormValues>> = props => {
     );
   }, [values.basicPublishingCredentialsPolicies?.ftp?.properties.allow, values.basicPublishingCredentialsPolicies?.scm?.properties.allow]);
 
+  const showMinTlsVersionWarning = useMemo(() => {
+    const currentMinTlsVersion = values.config.properties.minTlsVersion;
+    return !!currentMinTlsVersion && (currentMinTlsVersion === MinTlsVersion.tLS10 || currentMinTlsVersion === MinTlsVersion.tLS11);
+  }, [values.config.properties.minTlsVersion]);
+
   return (
     <div>
       {scenarioChecker.checkScenario(ScenarioIds.platform64BitSupported, { site }).status !== 'disabled' &&
@@ -475,6 +480,15 @@ const Platform: React.FC<FormikProps<AppSettingsFormValues>> = props => {
           ]}
         />
       }
+      {showMinTlsVersionWarning && (
+        <CustomBanner
+          id={'min-tls-version-warning'}
+          message={t('minTlsVersionWarningMessage')}
+          type={MessageBarType.warning}
+          undocked={true}
+          learnMoreLink={Links.legacyMinTlsVersion}
+        />
+      )}
       {scenarioChecker.checkScenario(ScenarioIds.enableMinCipherSuite, { site }).status === 'enabled' && (
         <Field
           name={'config.properties.minTlsCipherSuite'}

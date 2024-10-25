@@ -62,6 +62,7 @@ export const Links = {
   disableBasicAuthLearnMore: 'https://go.microsoft.com/fwlink/?linkid=2260316',
   functionsRuntimeAdminIsolationEnabled: 'https://go.microsoft.com/fwlink/?linkid=2281478',
   minTlsCipherSuiteASE: 'https://go.microsoft.com/fwlink/?linkid=2292349',
+  legacyMinTlsVersion: 'https://go.microsoft.com/fwlink/?linkid=2291041',
 };
 
 export const DeploymentCenterLinks = {
