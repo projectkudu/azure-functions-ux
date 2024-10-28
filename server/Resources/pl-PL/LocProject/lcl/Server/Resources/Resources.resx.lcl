@@ -4960,7 +4960,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Default]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Domyślne]]></Val>
+            <Val><![CDATA[Wartość domyślna]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -7227,6 +7227,9 @@
       <Item ItemId=";deploymentCenterSidecarForCodePrompt" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Interested in adding containers to run alongside your app? Click here to give it a try.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Chcesz dodać kontenery do uruchamiania razem z aplikacją? Kliknij tutaj, aby wypróbować tę opcję.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -15561,6 +15564,9 @@
       <Item ItemId=";minTlsCipherSuiteASEBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Minimum TLS cipher suite is not compatible with App Service Environment "FrontEndSSLCipherSuiteOrder" cluster setting. Ensure you have only configured one or the other.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Minimalny zestaw szyfrowania protokołu TLS jest niezgodny z ustawieniem klastra „FrontEndSSLCipherSuiteOrder” środowiska App Service Environment. Upewnij się, że skonfigurowano tylko jeden z nich.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
