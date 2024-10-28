@@ -72,7 +72,7 @@ const DeploymentCenterContainerSettings: React.FC<DeploymentCenterFieldProps<Dep
   useEffect(() => {
     let isSubscribed = true;
 
-    portalContext?.getBooleanFlight(ExperimentationConstants.FlightVariable.enableSidecarMigration).then(hasFlightEnabled => {
+    portalContext?.getBooleanFlight(ExperimentationConstants.FlightVariable.showDCReactView).then(hasFlightEnabled => {
       if (isSubscribed) {
         setEnableSidecarMigration(hasFlightEnabled);
       }
