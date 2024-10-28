@@ -733,10 +733,17 @@ export const getAuthSettings = (values: DeploymentCenterContainerFormData) => {
       passwordSecret = '';
     }
   } else if (values.registrySource === ContainerRegistrySources.privateRegistry) {
-    authType = SiteContainerAuthType.UserCredentials;
-    userManagedIdentityClientId = '';
-    userName = values.privateRegistryUsername;
-    passwordSecret = values.privateRegistryPassword;
+    if (values.privateRegistryUsername && values.privateRegistryPassword) {
+      authType = SiteContainerAuthType.UserCredentials;
+      userManagedIdentityClientId = '';
+      userName = values.privateRegistryUsername;
+      passwordSecret = values.privateRegistryPassword;
+    } else {
+      authType = SiteContainerAuthType.Anonymous;
+      userManagedIdentityClientId = '';
+      userName = '';
+      passwordSecret = '';
+    }
   }
 
   return {
