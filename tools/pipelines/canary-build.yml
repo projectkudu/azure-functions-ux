@@ -82,8 +82,6 @@ jobs:
     pool:
       vmImage: 'macOS-latest'
     dependsOn:
-      - AngularFull
-      - AngularMin
       - ReactBuild
       - Localization
     steps:
@@ -115,34 +113,10 @@ jobs:
         displayName: 'Setup Environment Variables and Build Resources'
 
       - task: DownloadBuildArtifacts@0
-        displayName: 'Download Angular Full Artifacts'
-        inputs:
-          artifactName: angular-full
-          downloadPath: $(System.DefaultWorkingDirectory)
-
-      - task: DownloadBuildArtifacts@0
-        displayName: 'Download Angular Min Artifacts'
-        inputs:
-          artifactName: angular-min
-          downloadPath: $(System.DefaultWorkingDirectory)
-
-      - task: DownloadBuildArtifacts@0
         displayName: 'Download React Build Artifacts'
         inputs:
           artifactName: react-build
           downloadPath: $(System.DefaultWorkingDirectory)
-
-      - task: CopyFiles@2
-        displayName: 'Copy Angular Full Files to: $(Build.ArtifactStagingDirectory)'
-        inputs:
-          SourceFolder: $(System.DefaultWorkingDirectory)/angular-full
-          TargetFolder: server/dist
-
-      - task: CopyFiles@2
-        displayName: 'Copy Angular Min Files to: $(Build.ArtifactStagingDirectory)'
-        inputs:
-          SourceFolder: $(System.DefaultWorkingDirectory)/angular-min
-          TargetFolder: server/dist
 
       - task: CopyFiles@2
         displayName: 'Copy React Build Files to: $(Build.ArtifactStagingDirectory)'
