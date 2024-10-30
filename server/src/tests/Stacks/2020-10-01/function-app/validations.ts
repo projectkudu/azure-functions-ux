@@ -72,7 +72,7 @@ function validateStacksOnlyHaveCorrectOS(stacks, os: 'windows' | 'linux') {
         expect(minorVersion.stackSettings).to.have.property(os === 'windows' ? 'windowsRuntimeSettings' : 'linuxRuntimeSettings');
         expect(minorVersion.stackSettings).to.have.not.property(
           os === 'windows' ? 'linuxRuntimeSettings' : 'windowsRuntimeSettings',
-          !undefined
+          true // !undefined
         );
       });
     });
@@ -167,7 +167,7 @@ function validateNodeStack(nodeStack) {
   expect(nodeStack.displayText).to.equal('Node.js');
   expect(nodeStack.value).to.equal('node');
   expect(nodeStack.preferredOs).to.equal('windows');
-  expect(nodeStack.majorVersions.length).to.equal(8);
+  expect(nodeStack.majorVersions.length).to.equal(9);
   expect(nodeStack).to.deep.equal(hardCodedNodeStack);
 }
 

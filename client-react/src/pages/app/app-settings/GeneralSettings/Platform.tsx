@@ -18,6 +18,7 @@ import useStacks from '../Hooks/useStacks';
 import { messageBannerStyle } from '../AppSettings.styles';
 import { ThemeContext } from '../../../../ThemeContext';
 import { RuntimeExtensionMajorVersions } from '../../../../models/functions/runtime-extension';
+import { isASE } from '../../../../utils/arm-utils';
 
 const Platform: React.FC<FormikProps<AppSettingsFormValues>> = props => {
   const site = useContext(SiteContext);
@@ -34,15 +35,24 @@ const Platform: React.FC<FormikProps<AppSettingsFormValues>> = props => {
   const platformOptionEnable = scenarioChecker.checkScenario(ScenarioIds.enablePlatform64, { site });
   const websocketsEnable = scenarioChecker.checkScenario(ScenarioIds.webSocketsEnabled, { site });
   const alwaysOnEnable = scenarioChecker.checkScenario(ScenarioIds.enableAlwaysOn, { site });
-  const sshControlEnabled = useMemo(() => stackVersionDetails.data?.supportedFeatures?.disableSsh, [
-    stackVersionDetails.data?.supportedFeatures?.disableSsh,
-  ]);
+  const canDisableSSH = scenarioChecker.checkScenario(ScenarioIds.canDisableSSH, { site });
   const gRPCOnlyEnabled = scenarioChecker.checkScenario(ScenarioIds.http20ProxyGRPCOnlySupported, { site });
+
+  const sshControlEnabled = useMemo(() => stackVersionDetails.data?.supportedFeatures?.disableSsh || canDisableSSH.status === 'enabled', [
+    stackVersionDetails.data?.supportedFeatures?.disableSsh,
+    canDisableSSH,
+  ]);
 
   const runtimeVersionIsNotV1 = useMemo(() => {
     const functionsExtensionVersion = values.appSettings.find(x => x.name === CommonConstants.AppSettingNames.functionsExtensionVersion);
     return functionsExtensionVersion?.value !== RuntimeExtensionMajorVersions.v1;
   }, [values.appSettings]);
+
+  const turningOnFunctionsAdminIsolation = useMemo(() => {
+    return (
+      !initialValues.site.properties.functionsRuntimeAdminIsolationEnabled && values.site.properties.functionsRuntimeAdminIsolationEnabled
+    );
+  }, [initialValues.site.properties.functionsRuntimeAdminIsolationEnabled, values.site.properties.functionsRuntimeAdminIsolationEnabled]);
 
   const http20ProxyDropdownItems = useMemo<IDropdownOption[]>(() => {
     const items = [
@@ -390,6 +400,28 @@ const Platform: React.FC<FormikProps<AppSettingsFormValues>> = props => {
           ]}
         />
       )}
+      {scenarioChecker.checkScenario(ScenarioIds.clientAffinitySupported, { site }).status !== 'disabled' && (
+        <Field
+          name="site.properties.clientAffinityProxyEnabled"
+          dirty={values.site.properties.clientAffinityProxyEnabled !== initialValues.site.properties.clientAffinityProxyEnabled}
+          component={RadioButton}
+          infoBubbleMessage={t('arrAffinityProxyInfoMessage')}
+          learnMoreLink={Links.clientAffinityProxyInfo}
+          label={t('clientAffinityProxyEnabledLabel')}
+          id="app-settings-clientAffinityProxyEnabled"
+          disabled={disableAllControls}
+          options={[
+            {
+              key: true,
+              text: t('on'),
+            },
+            {
+              key: false,
+              text: t('off'),
+            },
+          ]}
+        />
+      )}
       {
         <Field
           name={'site.properties.httpsOnly'}
@@ -452,6 +484,8 @@ const Platform: React.FC<FormikProps<AppSettingsFormValues>> = props => {
           infoBubbleMessage={t('minTlsCipherSuiteInfoBubbleMessage')}
           dirty={values.config.properties.minTlsCipherSuite !== initialValues.config.properties.minTlsCipherSuite}
           widthLabel={'230px'}
+          isIsolated={!!site && isASE(site)}
+          disabled={disableAllControls}
         />
       )}
       {scenarioChecker.checkScenario(ScenarioIds.enableE2ETlsEncryption, { site }).status === 'enabled' && (
@@ -489,32 +523,39 @@ const Platform: React.FC<FormikProps<AppSettingsFormValues>> = props => {
           infoBubbleMessage={t('portCountRange').format(VnetPrivatePortsCount.min, VnetPrivatePortsCount.max)}
         />
       )}
-      {scenarioChecker.checkScenario(ScenarioIds.functionsAdminIsolationSupported, { site }).status !== 'disabled' &&
-        runtimeVersionIsNotV1 && (
-          <Field
-            name="site.properties.functionsRuntimeAdminIsolationEnabled"
-            id="app-settings-functionsRuntimeAdminIsolationEnabled"
-            label={t('functionsAdminIsolation')}
-            infoBubbleMessage={t('functionsAdminIsolationInfoBubble')}
-            learnMoreLink={Links.functionsRuntimeAdminIsolationEnabled}
-            component={RadioButton}
-            dirty={
-              values.site.properties.functionsRuntimeAdminIsolationEnabled !==
-              initialValues.site.properties.functionsRuntimeAdminIsolationEnabled
-            }
-            disabled={disableAllControls}
-            options={[
-              {
-                key: true,
-                text: t('on'),
-              },
-              {
-                key: false,
-                text: t('off'),
-              },
-            ]}
-          />
-        )}
+      {turningOnFunctionsAdminIsolation && (
+        <CustomBanner
+          id={'functionsadminisolation-customBanner'}
+          message={t('functionsAdminIsolationWarning')}
+          type={MessageBarType.warning}
+          undocked={true}
+        />
+      )}
+      {scenarioChecker.checkScenario(ScenarioIds.functionsAdminIsolationSupported, { site }).status === 'enabled' && runtimeVersionIsNotV1 && (
+        <Field
+          name="site.properties.functionsRuntimeAdminIsolationEnabled"
+          id="app-settings-functionsRuntimeAdminIsolationEnabled"
+          label={t('functionsAdminIsolation')}
+          infoBubbleMessage={t('functionsAdminIsolationInfoBubble')}
+          learnMoreLink={Links.functionsRuntimeAdminIsolationEnabled}
+          component={RadioButton}
+          dirty={
+            values.site.properties.functionsRuntimeAdminIsolationEnabled !==
+            initialValues.site.properties.functionsRuntimeAdminIsolationEnabled
+          }
+          disabled={disableAllControls}
+          options={[
+            {
+              key: true,
+              text: t('on'),
+            },
+            {
+              key: false,
+              text: t('off'),
+            },
+          ]}
+        />
+      )}
     </div>
   );
 };

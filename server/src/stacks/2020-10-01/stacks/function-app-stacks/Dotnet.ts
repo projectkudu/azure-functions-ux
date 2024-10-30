@@ -27,8 +27,6 @@ const getDotnetStack: (useIsoDateFormat: boolean) => FunctionAppStack = (useIsoD
             stackSettings: {
               windowsRuntimeSettings: {
                 runtimeVersion: 'v9.0',
-                isHidden: true,
-                isPreview: true,
                 isDefault: false,
                 remoteDebuggingSupported: false,
                 appInsightsSettings: {
@@ -58,8 +56,6 @@ const getDotnetStack: (useIsoDateFormat: boolean) => FunctionAppStack = (useIsoD
               },
               linuxRuntimeSettings: {
                 runtimeVersion: 'DOTNET-ISOLATED|9.0',
-                isHidden: true,
-                isPreview: true,
                 isDefault: false,
                 remoteDebuggingSupported: false,
                 appInsightsSettings: {

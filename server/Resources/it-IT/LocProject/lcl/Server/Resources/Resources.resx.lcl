@@ -1803,6 +1803,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";arrAffinityProxyInfoMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Adjust the Affinity Cookie domain to the reverse proxy domain.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Impostare il dominio del cookie di affinità sul dominio proxy inverso.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";asdreg_manageAppService" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Manage App Service Authentication / Authorization]]></Val>
@@ -2993,10 +3002,13 @@
       </Item>
       <Item ItemId=";change" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[change]]></Val>
+          <Val><![CDATA[Change]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[cambio]]></Val>
+            <Val><![CDATA[Cambia]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[change]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -3284,6 +3296,15 @@
           <Val><![CDATA[You can improve the performance of your stateless applications by turning off the Affinity Cookie, stateful applications should keep the Affinity Cookie turned on for increased compatibility. Click to learn more.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[È possibile migliorare le prestazioni delle applicazioni senza stato disattivando il cookie di affinità. Al contrario, le applicazioni con stato devono mantenere attivato il cookie di affinità per una maggiore compatibilità. Per altre informazioni, fare clic qui.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";clientAffinityProxyEnabledLabel" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Session affinity proxy]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Proxy affinità di sessione]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -4931,6 +4952,15 @@
           <Val><![CDATA[Default documents list is ordered by precedence. Items towards the top of the list will have higher precedence than items at the bottom of the list.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[L'elenco dei documenti predefiniti è ordinato per priorità. Gli elementi in alto nell'elenco avranno una priorità maggiore rispetto a quelli più in basso nell'elenco.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";defaultUpperCase" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Default]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Impostazione predefinita]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -7194,6 +7224,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";deploymentCenterSidecarForCodePrompt" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Interested in adding containers to run alongside your app? Click here to give it a try.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Vuoi aggiungere contenitori da eseguire insieme all'app? Fai clic qui per provare.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";deploymentCenterSync" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Sync]]></Val>
@@ -7239,6 +7278,15 @@
           <Prev Cat="Text">
             <Val><![CDATA[Deployment Center (Preview)]]></Val>
           </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";deploymentCenterUpdateToSidecarContainers" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Update your container to the new sidecar pattern for extended site functionality.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Aggiornare il contenitore al nuovo modello sidecar per la funzionalità estesa del sito.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -9534,6 +9582,24 @@
           <Prev Cat="Text">
             <Val><![CDATA[Deploy from a public Git or Mercurial repo.]]></Val>
           </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";externalGitPrivateBitbucketNotSupported" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Authentication with private Bitbucket repositories is not supported for this app.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[L'autenticazione con repository Bitbucket privati non è supportata per questa app.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";externalGitPrivateGitHubNotSupported" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Authentication with private GitHub repositories is not supported for this app.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[L'autenticazione con repository GitHub privati non è supportata per questa app.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -12513,6 +12579,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";functionsAdminIsolationWarning" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Turning on Functions admin isolation can cause test runs of non-HTTP trigger Functions to fail in the Code+Test panel.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[L'attivazione dell'isolamento dell'amministratore di Funzioni può causare l'esito negativo delle esecuzioni di test di funzioni trigger non HTTP nel pannello Codice+Test.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";functionsDockerComposeDisableMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Docker compose based functions are not currently supported.]]></Val>
@@ -15486,6 +15561,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";minTlsCipherSuiteASEBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Minimum TLS cipher suite is not compatible with App Service Environment "FrontEndSSLCipherSuiteOrder" cluster setting. Ensure you have only configured one or the other.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[La suite di crittografia TLS minima non è compatibile con l’impostazione del cluster "FrontEndSSLCipherSuiteOrder" dell’Ambiente del servizio app. Assicurarsi di aver configurato l’una o l'altra.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";minTlsCipherSuiteBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[All incoming requests from clients that only support TLS Cipher Suites less secure than the set minimum will be rejected by the front-end.]]></Val>
@@ -15518,12 +15602,12 @@
       </Item>
       <Item ItemId=";minTlsCipherSuiteLabel" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Minimum Inbound TLS Cipher Suite (Preview)]]></Val>
+          <Val><![CDATA[Minimum Inbound TLS Cipher Suite]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Suite di crittografia TLS minima in ingresso (anteprima)]]></Val>
+            <Val><![CDATA[Suite di crittografia TLS minima in ingresso]]></Val>
           </Tgt>
           <Prev Cat="Text">
-            <Val><![CDATA[Minimum TLS Cipher Suite (Preview)]]></Val>
+            <Val><![CDATA[Minimum Inbound TLS Cipher Suite (Preview)]]></Val>
           </Prev>
         </Str>
         <Disp Icon="Str" />
@@ -15548,10 +15632,13 @@
       </Item>
       <Item ItemId=";minTlsCipherSuitePanelHeader" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Change minimum TLS Cipher Suite (preview)]]></Val>
+          <Val><![CDATA[Change minimum TLS Cipher Suite]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Modificare la suite di crittografia TLS minima (anteprima)]]></Val>
+            <Val><![CDATA[Modificare la suite di crittografia TLS minima]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Change minimum TLS Cipher Suite (preview)]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -20654,6 +20741,15 @@
           <Val><![CDATA[Start Swap]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Avvia scambio]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";startUpdate" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Start update]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Avvia aggiornamento]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

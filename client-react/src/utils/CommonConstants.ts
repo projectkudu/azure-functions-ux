@@ -84,6 +84,7 @@ export class CommonConstants {
     enableNewNodeEditMode: 'enableNewNodeEditMode',
     customErrorPage: 'customErrorPage',
     showJBossClustering: 'showJBossClustering',
+    useCanaryFusionServer: 'useCanaryFusionServer',
   };
 
   public static readonly AppDensityLimit = 8;
@@ -104,14 +105,25 @@ export class CommonConstants {
   public static readonly WordPressStack = 'wordpress';
 
   public static readonly WordPressLinuxFxVersionsMapping = {
-    'wordpress|latest': 'wordpress|8.0',
-    'wordpress|8.0': 'wordpress|8.0',
-    'wordpress|8.2': 'wordpress|8.2',
-    'wordpress|8.3': 'wordpress|8.3',
-    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:latest': 'wordpress|8.0',
-    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.0': 'wordpress|8.0',
-    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.2': 'wordpress|8.2',
-    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.3': 'wordpress|8.3',
+    'wordpress|latest': 'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.0',
+    'wordpress|8.0': 'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.0',
+    'wordpress|8.2': 'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.2',
+    'wordpress|8.3': 'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.3',
+    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:latest': 'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.0',
+    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.0': 'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.0',
+    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.2': 'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.2',
+    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.3': 'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.3',
+    'docker|mcr.microsoft.com/appsvc/wordpress-debian-php:8.2': 'docker|mcr.microsoft.com/appsvc/wordpress-debian-php:8.2',
+    'docker|mcr.microsoft.com/appsvc/wordpress-debian-php:8.3': 'docker|mcr.microsoft.com/appsvc/wordpress-debian-php:8.3',
+  };
+
+  public static readonly WordPressStackDisplayTextMapping = {
+    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:latest': 'Alpine - PHP 8.0',
+    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.0': 'Alpine - PHP 8.0',
+    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.2': 'Alpine - PHP 8.2',
+    'docker|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.3': 'Alpine - PHP 8.3',
+    'docker|mcr.microsoft.com/appsvc/wordpress-debian-php:8.2': 'PHP 8.2',
+    'docker|mcr.microsoft.com/appsvc/wordpress-debian-php:8.3': 'PHP 8.3',
   };
 
   public static readonly AppSettingNames = {
@@ -291,7 +303,7 @@ export class CommonConstants {
 
   public static readonly workflowDispatchTriggerErrorMessage = "workflow does not have 'workflow_dispatch' trigger";
 
-  public static readonly production = 'production';
+  public static readonly Production = 'Production';
 
   public static readonly master = 'master';
 
@@ -327,6 +339,7 @@ export class CommonConstants {
 
   public static readonly ResourceTypes = {
     cosmosDbAccount: 'Microsoft.DocumentDB/databaseAccounts',
+    site: 'Microsoft.Web/sites',
   };
 }
 
@@ -401,6 +414,8 @@ export class ExperimentationConstants {
 
   public static FlightVariable = {
     removeDeployEnvironment: 'remove-deploy-environment',
+    enableSidecarMigration: 'enable-sidecar-migration',
+    showDCReactView: 'show-dc-reactview',
   };
 }
 

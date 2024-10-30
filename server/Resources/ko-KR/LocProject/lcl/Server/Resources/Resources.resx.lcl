@@ -1800,6 +1800,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";arrAffinityProxyInfoMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Adjust the Affinity Cookie domain to the reverse proxy domain.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[선호도 쿠키 도메인을 역방향 프록시 도메인으로 조정합니다.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";asdreg_manageAppService" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Manage App Service Authentication / Authorization]]></Val>
@@ -2990,10 +2999,13 @@
       </Item>
       <Item ItemId=";change" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[change]]></Val>
+          <Val><![CDATA[Change]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[변경]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[change]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -3281,6 +3293,15 @@
           <Val><![CDATA[You can improve the performance of your stateless applications by turning off the Affinity Cookie, stateful applications should keep the Affinity Cookie turned on for increased compatibility. Click to learn more.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[선호도 쿠키를 해제하여 상태 비저장 애플리케이션의 성능을 향상할 수 있고, 호환성을 높이기 위해서는 상태 저장 애플리케이션의 선호도 쿠키를 설정해야 합니다. 자세히 알아보려면 클릭하세요.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";clientAffinityProxyEnabledLabel" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Session affinity proxy]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[세션 선호도 프록시]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -4928,6 +4949,15 @@
           <Val><![CDATA[Default documents list is ordered by precedence. Items towards the top of the list will have higher precedence than items at the bottom of the list.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[기본 문서 목록은 우선 순위에 따라 정렬됩니다. 목록 위쪽에 있는 항목은 목록 아래쪽에 있는 항목보다 우선 순위가 높습니다.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";defaultUpperCase" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Default]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[기본값]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -7191,6 +7221,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";deploymentCenterSidecarForCodePrompt" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Interested in adding containers to run alongside your app? Click here to give it a try.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[앱과 함께 실행할 컨테이너를 추가하는 데 관심이 있나요? 사용해 보려면 여기를 클릭하세요.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";deploymentCenterSync" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Sync]]></Val>
@@ -7236,6 +7275,15 @@
           <Prev Cat="Text">
             <Val><![CDATA[Deployment Center (Preview)]]></Val>
           </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";deploymentCenterUpdateToSidecarContainers" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Update your container to the new sidecar pattern for extended site functionality.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[확장된 사이트 기능을 위해 컨테이너를 새 사이드카 패턴으로 업데이트합니다.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -9525,6 +9573,24 @@
           <Prev Cat="Text">
             <Val><![CDATA[Deploy from a public Git or Mercurial repo.]]></Val>
           </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";externalGitPrivateBitbucketNotSupported" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Authentication with private Bitbucket repositories is not supported for this app.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[이 앱에서는 프라이빗 Bitbucket 리포지토리를 사용한 인증이 지원되지 않습니다.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";externalGitPrivateGitHubNotSupported" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Authentication with private GitHub repositories is not supported for this app.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[이 앱에는 프라이빗 GitHub 리포지토리를 사용한 인증이 지원되지 않습니다.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -12494,6 +12560,15 @@
           <Val><![CDATA[Enable this feature to require Function App administrative actions to go through Azure Resource Manager.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[함수 앱 관리 작업이 Azure Resource Manager를 통과하도록 하려면 이 기능을 사용하도록 설정세요.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";functionsAdminIsolationWarning" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Turning on Functions admin isolation can cause test runs of non-HTTP trigger Functions to fail in the Code+Test panel.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[함수 관리자 격리를 켜면 Code+Test 패널에서 HTTP가 아닌 트리거 함수의 테스트 실행이 실패할 수 있습니다.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -15474,6 +15549,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";minTlsCipherSuiteASEBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Minimum TLS cipher suite is not compatible with App Service Environment "FrontEndSSLCipherSuiteOrder" cluster setting. Ensure you have only configured one or the other.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[최소 TLS 암호 그룹은 App Service Environment "FrontEndSSLCipherSuiteOrder" 클러스터 설정과 호환되지 않습니다. 둘 중 하나만 구성했는지 확인합니다.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";minTlsCipherSuiteBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[All incoming requests from clients that only support TLS Cipher Suites less secure than the set minimum will be rejected by the front-end.]]></Val>
@@ -15506,12 +15590,12 @@
       </Item>
       <Item ItemId=";minTlsCipherSuiteLabel" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Minimum Inbound TLS Cipher Suite (Preview)]]></Val>
+          <Val><![CDATA[Minimum Inbound TLS Cipher Suite]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[최소 인바운드 TLS 암호 그룹(미리 보기)]]></Val>
+            <Val><![CDATA[최소 인바운드 TLS 암호 그룹]]></Val>
           </Tgt>
           <Prev Cat="Text">
-            <Val><![CDATA[Minimum TLS Cipher Suite (Preview)]]></Val>
+            <Val><![CDATA[Minimum Inbound TLS Cipher Suite (Preview)]]></Val>
           </Prev>
         </Str>
         <Disp Icon="Str" />
@@ -15536,10 +15620,13 @@
       </Item>
       <Item ItemId=";minTlsCipherSuitePanelHeader" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Change minimum TLS Cipher Suite (preview)]]></Val>
+          <Val><![CDATA[Change minimum TLS Cipher Suite]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[최소 TLS 암호 그룹 변경(미리 보기)]]></Val>
+            <Val><![CDATA[최소 TLS 암호 그룹 변경]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Change minimum TLS Cipher Suite (preview)]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -20639,6 +20726,15 @@
           <Val><![CDATA[Start Swap]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[교체 시작]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";startUpdate" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Start update]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[업데이트 시작]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

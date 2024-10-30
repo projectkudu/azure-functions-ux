@@ -43,6 +43,7 @@ import DeploymentCenterCodeBuildConfiguredView from './DeploymentCenterCodeBuild
 import DeploymentCenterCodeBuildRuntimeAndVersion from './DeploymentCenterCodeBuildRuntimeAndVersion';
 import DeploymentCenterCodeSourceAndBuild from './DeploymentCenterCodeSourceAndBuild';
 import DeploymentCenterCodeSourceKuduConfiguredView from './DeploymentCenterCodeSourceKuduConfiguredView';
+import { DeploymentCenterConstants } from '../DeploymentCenterConstants';
 
 const DeploymentCenterCodeSettings: React.FC<DeploymentCenterFieldProps<DeploymentCenterCodeFormData>> = props => {
   const { formProps, isDataRefreshing } = props;
@@ -154,7 +155,7 @@ const DeploymentCenterCodeSettings: React.FC<DeploymentCenterFieldProps<Deployme
 
     const variables = {
       siteName: slotName ? `${siteName}(${slotName})` : siteName,
-      slotName: slotName || CommonConstants.production,
+      slotName: slotName || CommonConstants.Production,
       runtimeVersion: getRuntimeVersion(
         siteStateContext.isLinuxApp,
         formProps.values.runtimeVersion,
@@ -170,6 +171,19 @@ const DeploymentCenterCodeSettings: React.FC<DeploymentCenterFieldProps<Deployme
 
     if (isRemoveEnvEnabled) {
       variables['isRemoveEnvEnabled'] = true;
+    }
+
+    if (siteStateContext.isFlexConsumptionApp) {
+      variables['isFlexConsumption'] = true;
+    }
+
+    if (
+      formProps.values.runtimeStack === RuntimeStackOptions.Node &&
+      siteStateContext.isLinuxApp &&
+      deploymentCenterContext.applicationSettings?.properties &&
+      deploymentCenterContext.applicationSettings?.properties[DeploymentCenterConstants.appSettings_SCM_DO_BUILD_DURING_DEPLOYMENT]
+    ) {
+      variables['nodeOryxWorkflow'] = true;
     }
 
     return variables;

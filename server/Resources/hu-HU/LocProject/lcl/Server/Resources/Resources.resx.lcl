@@ -1800,6 +1800,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";arrAffinityProxyInfoMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Adjust the Affinity Cookie domain to the reverse proxy domain.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Módosítsa az affinitás cookie tartományát a fordított proxytartományra.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";asdreg_manageAppService" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Manage App Service Authentication / Authorization]]></Val>
@@ -2990,10 +2999,13 @@
       </Item>
       <Item ItemId=";change" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[change]]></Val>
+          <Val><![CDATA[Change]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[módosítás]]></Val>
+            <Val><![CDATA[Módosítás]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[change]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -3281,6 +3293,15 @@
           <Val><![CDATA[You can improve the performance of your stateless applications by turning off the Affinity Cookie, stateful applications should keep the Affinity Cookie turned on for increased compatibility. Click to learn more.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Az affinitási cookie-k kikapcsolásával növelheti az állapot nélküli alkalmazások teljesítményét. Az állapottartó alkalmazások esetében a fokozott kompatibilitás biztosításához be kell kapcsolni az affinitási cookie-kat. További tudnivalókért kattintson ide.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";clientAffinityProxyEnabledLabel" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Session affinity proxy]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Munkamenet-affinitás proxyja]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -4928,6 +4949,15 @@
           <Val><![CDATA[Default documents list is ordered by precedence. Items towards the top of the list will have higher precedence than items at the bottom of the list.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Az alapértelmezett dokumentumlista precedencia szerint van rendezve. A lista elején található elemek nagyobb precedenciával rendelkeznek, mint a lista végén találhatók.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";defaultUpperCase" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Default]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Alapértelmezett]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -7191,6 +7221,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";deploymentCenterSidecarForCodePrompt" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Interested in adding containers to run alongside your app? Click here to give it a try.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Szeretné hozzáadni a tárolókat, hogy az alkalmazással együtt fussanak? Ide kattintva kipróbálhatja.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";deploymentCenterSync" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Sync]]></Val>
@@ -7236,6 +7275,15 @@
           <Prev Cat="Text">
             <Val><![CDATA[Deployment Center (Preview)]]></Val>
           </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";deploymentCenterUpdateToSidecarContainers" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Update your container to the new sidecar pattern for extended site functionality.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Frissítse a tárolót az új oldalpanel-mintára a bővített webhelyfunkciók érdekében.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -9531,6 +9579,24 @@
           <Prev Cat="Text">
             <Val><![CDATA[Deploy from a public Git or Mercurial repo.]]></Val>
           </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";externalGitPrivateBitbucketNotSupported" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Authentication with private Bitbucket repositories is not supported for this app.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Ez az alkalmazás nem támogatja a privát Bitbucket-adattárakkal való hitelesítést.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";externalGitPrivateGitHubNotSupported" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Authentication with private GitHub repositories is not supported for this app.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Ez az alkalmazás nem támogatja a privát GitHub-adattárakkal való hitelesítést.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -12510,6 +12576,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";functionsAdminIsolationWarning" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Turning on Functions admin isolation can cause test runs of non-HTTP trigger Functions to fail in the Code+Test panel.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[A Függvények rendszergazdai elkülönítésének bekapcsolása esetén a nem HTTP-eseményindító függvények tesztfuttatásai meghiúsulhatnak a Kódolás+Tesztelés panelen.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";functionsDockerComposeDisableMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Docker compose based functions are not currently supported.]]></Val>
@@ -15477,6 +15552,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";minTlsCipherSuiteASEBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Minimum TLS cipher suite is not compatible with App Service Environment "FrontEndSSLCipherSuiteOrder" cluster setting. Ensure you have only configured one or the other.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[A minimális TLS titkosítócsomag nem kompatibilis App Service Environment „FrontEndSSLCipherSuiteOrder” fürtbeállítással. Győződjön meg arról, hogy csak az egyiket vagy a másikat konfigurálta.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";minTlsCipherSuiteBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[All incoming requests from clients that only support TLS Cipher Suites less secure than the set minimum will be rejected by the front-end.]]></Val>
@@ -15509,12 +15593,12 @@
       </Item>
       <Item ItemId=";minTlsCipherSuiteLabel" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Minimum Inbound TLS Cipher Suite (Preview)]]></Val>
+          <Val><![CDATA[Minimum Inbound TLS Cipher Suite]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Bejövő TLS-titkosítócsomag minimális verziója (előzetes verzió)]]></Val>
+            <Val><![CDATA[Bejövő TLS-titkosítócsomag minimális verziója]]></Val>
           </Tgt>
           <Prev Cat="Text">
-            <Val><![CDATA[Minimum TLS Cipher Suite (Preview)]]></Val>
+            <Val><![CDATA[Minimum Inbound TLS Cipher Suite (Preview)]]></Val>
           </Prev>
         </Str>
         <Disp Icon="Str" />
@@ -15539,10 +15623,13 @@
       </Item>
       <Item ItemId=";minTlsCipherSuitePanelHeader" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Change minimum TLS Cipher Suite (preview)]]></Val>
+          <Val><![CDATA[Change minimum TLS Cipher Suite]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[A minimális TLS titkosítócsomag módosítása (előzetes verzió)]]></Val>
+            <Val><![CDATA[A minimális TLS titkosítócsomag módosítása]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Change minimum TLS Cipher Suite (preview)]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -20633,6 +20720,15 @@
           <Val><![CDATA[Start Swap]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Csere indítása]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";startUpdate" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Start update]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Frissítés indítása]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

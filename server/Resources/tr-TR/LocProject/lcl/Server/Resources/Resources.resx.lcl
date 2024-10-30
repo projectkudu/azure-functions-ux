@@ -1803,6 +1803,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";arrAffinityProxyInfoMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Adjust the Affinity Cookie domain to the reverse proxy domain.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Benzeşim Tanımlama Bilgisi etki alanını ters ara sunucu etki alanına ayarlayın.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";asdreg_manageAppService" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Manage App Service Authentication / Authorization]]></Val>
@@ -2993,10 +3002,13 @@
       </Item>
       <Item ItemId=";change" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[change]]></Val>
+          <Val><![CDATA[Change]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[değiştir]]></Val>
+            <Val><![CDATA[Değiştir]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[change]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -3284,6 +3296,15 @@
           <Val><![CDATA[You can improve the performance of your stateless applications by turning off the Affinity Cookie, stateful applications should keep the Affinity Cookie turned on for increased compatibility. Click to learn more.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Benzeşim Tanımlama Bilgisini kapatarak durum bilgisi olmayan uygulamalarınızın performansını iyileştirebilirsiniz. Durum bilgisi olan uygulamalarda, uyumluluğu artırmak için Benzeşim Tanımlama Bilgisi açık olmalıdır. Daha fazla bilgi almak için tıklayın.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";clientAffinityProxyEnabledLabel" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Session affinity proxy]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Oturum benzeşimi ara sunucusu]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -4931,6 +4952,15 @@
           <Val><![CDATA[Default documents list is ordered by precedence. Items towards the top of the list will have higher precedence than items at the bottom of the list.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Varsayılan belgeler listesi önceliğe göre sıralanmıştır. Listenin en üstündeki öğeler, en altındaki öğelerden daha yüksek önceliğe sahiptir.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";defaultUpperCase" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Default]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Varsayılan]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -7194,6 +7224,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";deploymentCenterSidecarForCodePrompt" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Interested in adding containers to run alongside your app? Click here to give it a try.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Uygulamanızın yanında çalıştırılacak kapsayıcılar eklemek ister misiniz? Denemek için buraya tıklayın.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";deploymentCenterSync" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Sync]]></Val>
@@ -7239,6 +7278,15 @@
           <Prev Cat="Text">
             <Val><![CDATA[Deployment Center (Preview)]]></Val>
           </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";deploymentCenterUpdateToSidecarContainers" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Update your container to the new sidecar pattern for extended site functionality.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Daha fazla site işlevselliği için kapsayıcınızı yeni yan kapsayıcı deseni ile güncelleştirin.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -9537,6 +9585,24 @@
           <Prev Cat="Text">
             <Val><![CDATA[Deploy from a public Git or Mercurial repo.]]></Val>
           </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";externalGitPrivateBitbucketNotSupported" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Authentication with private Bitbucket repositories is not supported for this app.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Bu uygulama için özel Bitbucket depolarıyla kimlik doğrulaması desteklenmiyor.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";externalGitPrivateGitHubNotSupported" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Authentication with private GitHub repositories is not supported for this app.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Bu uygulama için özel GitHub depolarıyla kimlik doğrulaması desteklenmiyor.]]></Val>
+          </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -12512,6 +12578,15 @@
           <Val><![CDATA[Enable this feature to require Function App administrative actions to go through Azure Resource Manager.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[İşlev Uygulaması yönetim eylemlerinin Azure Resource Manager üzerinden geçmesini gerektirmek için bu özelliği etkinleştirin.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";functionsAdminIsolationWarning" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Turning on Functions admin isolation can cause test runs of non-HTTP trigger Functions to fail in the Code+Test panel.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[İşlevler yönetici yalıtımını açmak, HTTP olmayan tetikleyici İşlevlerinin test çalıştırmalarının Code+Test panelinde başarısız olmasına neden olabilir.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -15495,6 +15570,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";minTlsCipherSuiteASEBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Minimum TLS cipher suite is not compatible with App Service Environment "FrontEndSSLCipherSuiteOrder" cluster setting. Ensure you have only configured one or the other.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[En düşük TLS şifre paketi, "FrontEndSSLCipherSuiteOrder" App Service Ortamı kümesi ayarıyla uyumlu değil. Yalnızca birinin yapılandırıldığından emin olun.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";minTlsCipherSuiteBannerInfo" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[All incoming requests from clients that only support TLS Cipher Suites less secure than the set minimum will be rejected by the front-end.]]></Val>
@@ -15527,12 +15611,12 @@
       </Item>
       <Item ItemId=";minTlsCipherSuiteLabel" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Minimum Inbound TLS Cipher Suite (Preview)]]></Val>
+          <Val><![CDATA[Minimum Inbound TLS Cipher Suite]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Minimum Gelen TLS Şifreleme Paketi (Önizleme)]]></Val>
+            <Val><![CDATA[Minimum Gelen TLS Şifreleme Paketi]]></Val>
           </Tgt>
           <Prev Cat="Text">
-            <Val><![CDATA[Minimum TLS Cipher Suite (Preview)]]></Val>
+            <Val><![CDATA[Minimum Inbound TLS Cipher Suite (Preview)]]></Val>
           </Prev>
         </Str>
         <Disp Icon="Str" />
@@ -15557,10 +15641,13 @@
       </Item>
       <Item ItemId=";minTlsCipherSuitePanelHeader" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Change minimum TLS Cipher Suite (preview)]]></Val>
+          <Val><![CDATA[Change minimum TLS Cipher Suite]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Minimum TLS Şifreleme Paketi sürümünü değiştir (önizleme)]]></Val>
+            <Val><![CDATA[En Düşük TLS Şifreleme Paketi sürümünü değiştir]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Change minimum TLS Cipher Suite (preview)]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -20657,6 +20744,15 @@
           <Val><![CDATA[Start Swap]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Değiştirmeyi Başlat]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";startUpdate" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Start update]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Güncelleştirmeyi başlat]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

@@ -2,6 +2,7 @@ export const Links = {
   applicationSettingsInfo: 'https://go.microsoft.com/fwlink/?linkid=2086665',
   pythonStackInfo: 'https://go.microsoft.com/fwlink/?linkid=852196',
   clientAffinityInfo: 'https://go.microsoft.com/fwlink/?linkid=798249',
+  clientAffinityProxyInfo: 'https://go.microsoft.com/fwlink/?linkid=2283581',
   alwaysOnInfo: 'https://go.microsoft.com/fwlink/?linkid=2086196',
   ftpInfo: 'https://go.microsoft.com/fwlink/?linkid=871316',
   funcConnStringsLearnMore: 'https://go.microsoft.com/fwlink/?linkid=875276',
@@ -60,6 +61,7 @@ export const Links = {
   endToEndEncryptionLearnMore: 'https://go.microsoft.com/fwlink/?linkid=2252411',
   disableBasicAuthLearnMore: 'https://go.microsoft.com/fwlink/?linkid=2260316',
   functionsRuntimeAdminIsolationEnabled: 'https://go.microsoft.com/fwlink/?linkid=2281478',
+  minTlsCipherSuiteASE: 'https://go.microsoft.com/fwlink/?linkid=2292349',
 };
 
 export const DeploymentCenterLinks = {
