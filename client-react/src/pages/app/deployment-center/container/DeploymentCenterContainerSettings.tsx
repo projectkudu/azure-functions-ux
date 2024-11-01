@@ -26,7 +26,7 @@ import DeploymentCenterGitHubConfiguredView from '../github-provider/DeploymentC
 import DeploymentCenterContainerSettingsReadOnlyView from './DeploymentCenterContainerSettingsReadOnlyView';
 import { SiteStateContext } from '../../../../SiteState';
 import DeploymentCenterVstsBuildProvider from '../devops-provider/DeploymentCenterVstsBuildProvider';
-import { MessageBar, MessageBarType, PrimaryButton, ProgressIndicator, Text } from '@fluentui/react';
+import { Link, MessageBar, MessageBarType, PrimaryButton, ProgressIndicator } from '@fluentui/react';
 import { AppOs, SiteContainer } from '../../../../models/site/site';
 import DeploymentCenterData from '../DeploymentCenter.data';
 import { PortalContext } from '../../../../PortalContext';
@@ -35,7 +35,10 @@ import { AcrDependency } from '../../../../utils/dependency/Dependency';
 import DeploymentCenterVstsBuildConfiguredView from '../devops-provider/DeploymentCenterVstsBuildConfiguredView';
 import { ArmObj } from '../../../../models/arm-obj';
 import { style } from 'typestyle';
-import { migrationBannerStyle } from '../DeploymentCenter.styles';
+import { migrationBannerStyle, titleWithPaddingStyle } from '../DeploymentCenter.styles';
+import { DeploymentCenterLinks } from '../../../../utils/FwLinks';
+import { ThemeContext } from '../../../../ThemeContext';
+import { customBannerLinkStyle } from '../../../../components/CustomBanner/CustomBanner.styles';
 
 const DeploymentCenterContainerSettings: React.FC<DeploymentCenterFieldProps<DeploymentCenterContainerFormData>> = props => {
   const { formProps, isDataRefreshing } = props;
@@ -48,6 +51,8 @@ const DeploymentCenterContainerSettings: React.FC<DeploymentCenterFieldProps<Dep
   const [showVstsReadOnlyView, setShowVstsReadOnlyView] = useState(false);
   const [showSourceSelectionOption, setShowSourceSelectionOption] = useState(false);
   const [enableSidecarMigration, setEnableSidecarMigration] = useState(false);
+  const theme = useContext(ThemeContext);
+  const linkStyle = customBannerLinkStyle(theme);
 
   // NOTE(michinoy): The serverUrl, image, username, and password are retrieved from  one of three sources:
   // acr, dockerHub, or privateRegistry.
@@ -72,7 +77,7 @@ const DeploymentCenterContainerSettings: React.FC<DeploymentCenterFieldProps<Dep
   useEffect(() => {
     let isSubscribed = true;
 
-    portalContext?.getBooleanFlight(ExperimentationConstants.FlightVariable.enableSidecarMigration).then(hasFlightEnabled => {
+    portalContext?.getBooleanFlight(ExperimentationConstants.FlightVariable.showDCReactView).then(hasFlightEnabled => {
       if (isSubscribed) {
         setEnableSidecarMigration(hasFlightEnabled);
       }
@@ -397,14 +402,23 @@ const DeploymentCenterContainerSettings: React.FC<DeploymentCenterFieldProps<Dep
     return (
       <>
         {showMigrationBanner && (
-          <>
+          <div className={titleWithPaddingStyle}>
             <MessageBar messageBarType={MessageBarType.warning}>
               <div className={migrationBannerStyle}>
-                <Text>{t('deploymentCenterUpdateToSidecarContainers')}</Text>
-                <PrimaryButton text={t('startUpdate')} onClick={openUpdateToSidecarPane} className={style({ maxWidth: '130px' })} />
+                <span>
+                  <span tabIndex={0}>{t('deploymentCenterUpdateToSidecarContainers')}</span>
+                  <Link className={linkStyle} href={DeploymentCenterLinks.sidecarsLink} target="_blank" aria-label={t('learnMore')}>
+                    {t('learnMore')}
+                  </Link>
+                </span>
+                <PrimaryButton
+                  text={t('startUpdate')}
+                  onClick={openUpdateToSidecarPane}
+                  className={style({ maxWidth: '125px', maxHeight: '40px' })}
+                />
               </div>
             </MessageBar>
-          </>
+          </div>
         )}
 
         {showSourceSelectionOption && <DeploymentCenterContainerSource formProps={formProps} />}

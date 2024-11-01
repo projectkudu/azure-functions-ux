@@ -86,4 +86,5 @@ export const DeploymentCenterLinks = {
   roleAssignmentPrereqs: 'https://go.microsoft.com/fwlink/?linkid=2249489',
   managedIdentityCreationPrereqs: 'https://go.microsoft.com/fwlink/?linkid=2253463',
   oidcPermissionPrereqs: 'https://go.microsoft.com/fwlink/?linkid=2256502',
+  sidecarsLink: 'https://go.microsoft.com/fwlink/?linkid=2295005',
 };

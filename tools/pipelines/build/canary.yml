@@ -61,84 +61,6 @@ jobs:
         inputs:
           ArtifactName: react-build
 
-  - job: AngularFull
-    pool:
-      vmImage: 'macOS-latest'
-
-    steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: '14.x'
-        displayName: 'Install Node.js'
-
-      - script: |
-          cd client
-          npm ci
-        displayName: 'npm install'
-
-      - script: |
-          cd client
-          node_modules/.bin/ng build --progress false --output-path="public/ng-full"
-        displayName: 'ng build full'
-
-      - task: CopyFiles@2
-        displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-        inputs:
-          SourceFolder: client/public
-          TargetFolder: '$(Build.ArtifactStagingDirectory)/public'
-
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish Artifact: angular-full'
-        inputs:
-          ArtifactName: angular-full
-
-  - job: AngularMin
-    pool:
-      vmImage: 'macOS-latest'
-
-    steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: '14.x'
-        displayName: 'Install Node.js'
-
-      - script: |
-          npm install -g gulp-cli
-        displayName: 'install gulp'
-
-      - script: |
-          cd client
-          npm ci
-        displayName: 'npm install'
-
-      - script: |
-          cd client
-          node_modules/.bin/ng build --progress false --prod --environment=prod --output-path="../server/public/ng-min"
-        displayName: 'ng build full'
-
-      - script: |
-          cd server
-          npm ci
-          gulp replace-tokens-for-minimized-angular
-        displayName: 'Generate config file with angular files'
-
-      - task: CopyFiles@2
-        displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-        inputs:
-          SourceFolder: server/public
-          TargetFolder: '$(Build.ArtifactStagingDirectory)/public'
-
-      - task: CopyFiles@2
-        displayName: 'Copy Assets to: $(Build.ArtifactStagingDirectory)'
-        inputs:
-          SourceFolder: client/src/assets
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish Artifact: angular-min'
-        inputs:
-          ArtifactName: angular-min
-
   - job: Localization
     pool:
       vmImage: 'windows-2019'
@@ -161,8 +83,6 @@ jobs:
     pool:
       vmImage: 'macOS-latest'
     dependsOn:
-      - AngularFull
-      - AngularMin
       - ReactBuild
       - Localization
     steps:
@@ -194,34 +114,10 @@ jobs:
         displayName: 'Setup Environment Variables and Build Resources'
 
       - task: DownloadBuildArtifacts@0
-        displayName: 'Download Angular Full Artifacts'
-        inputs:
-          artifactName: angular-full
-          downloadPath: $(System.DefaultWorkingDirectory)
-
-      - task: DownloadBuildArtifacts@0
-        displayName: 'Download Angular Min Artifacts'
-        inputs:
-          artifactName: angular-min
-          downloadPath: $(System.DefaultWorkingDirectory)
-
-      - task: DownloadBuildArtifacts@0
         displayName: 'Download React Build Artifacts'
         inputs:
           artifactName: react-build
           downloadPath: $(System.DefaultWorkingDirectory)
-
-      - task: CopyFiles@2
-        displayName: 'Copy Angular Full Files to: server/dist'
-        inputs:
-          SourceFolder: $(System.DefaultWorkingDirectory)/angular-full
-          TargetFolder: server/dist
-
-      - task: CopyFiles@2
-        displayName: 'Copy Angular Min Files to: server/dist'
-        inputs:
-          SourceFolder: $(System.DefaultWorkingDirectory)/angular-min
-          TargetFolder: server/dist
 
       - task: CopyFiles@2
         displayName: 'Copy React Build Files to: server/dist'
@@ -294,7 +190,7 @@ jobs:
           SourceFolder: $(Agent.BuildDirectory)/s/deployment
           Contents: '**'
           TargetFolder: $(Build.ArtifactStagingDirectory)
-          
+
       - task: PowerShell@2
         displayName: 'Update BuildVer.txt' # For other versioning options check https://aka.ms/obpipelines/versioning
         inputs:
