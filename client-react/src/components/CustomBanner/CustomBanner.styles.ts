@@ -76,3 +76,10 @@ export const bannerLinkStyle = (theme: ThemeExtended) =>
       },
     },
   });
+
+// NOTE(yoonaoh): The color of the link is set to the default Fluent UI link color.
+// Using the statusBar link color from @fluentui/azure-themes instead
+export const customBannerLinkStyle = (theme: ThemeExtended) =>
+  style({
+    color: theme?.semanticColors?.link?.toLowerCase() == '#0078d4' ? '#005A9E' : '#6CB8F6',
+  });

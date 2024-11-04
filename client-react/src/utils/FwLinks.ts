@@ -62,6 +62,7 @@ export const Links = {
   disableBasicAuthLearnMore: 'https://go.microsoft.com/fwlink/?linkid=2260316',
   functionsRuntimeAdminIsolationEnabled: 'https://go.microsoft.com/fwlink/?linkid=2281478',
   minTlsCipherSuiteASE: 'https://go.microsoft.com/fwlink/?linkid=2292349',
+  legacyMinTlsVersion: 'https://go.microsoft.com/fwlink/?linkid=2291041',
 };
 
 export const DeploymentCenterLinks = {
@@ -85,4 +86,5 @@ export const DeploymentCenterLinks = {
   roleAssignmentPrereqs: 'https://go.microsoft.com/fwlink/?linkid=2249489',
   managedIdentityCreationPrereqs: 'https://go.microsoft.com/fwlink/?linkid=2253463',
   oidcPermissionPrereqs: 'https://go.microsoft.com/fwlink/?linkid=2256502',
+  sidecarsLink: 'https://go.microsoft.com/fwlink/?linkid=2295005',
 };
