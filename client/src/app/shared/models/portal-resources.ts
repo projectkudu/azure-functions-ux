@@ -506,6 +506,7 @@ export class PortalResources {
   public static httpCertWarningInfoBubbleMessage = 'httpCertWarningInfoBubbleMessage';
   public static minTlsVersionLabel = 'minTlsVersionLabel';
   public static minTlsVersionInfoBubbleMessage = 'minTlsVersionInfoBubbleMessage';
+  public static minTlsVersionWarningMessage = 'minTlsVersionWarningMessage';
   public static minTlsCipherSuiteLabel = 'minTlsCipherSuiteLabel';
   public static vnetPrivatePortsCount = 'vnetPrivatePortsCount';
   public static minTlsCipherSuiteInfoBubbleMessage = 'minTlsCipherSuiteInfoBubbleMessage';

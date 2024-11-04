@@ -1650,6 +1650,9 @@
     <data name="minTlsVersionInfoBubbleMessage" xml:space="preserve">
         <value>Select the minimum TLS encryption version required by clients connecting to your app.</value>
     </data>
+    <data name="minTlsVersionWarningMessage" xml:space="preserve">
+        <value>TLS 1.0 and 1.1 are considered legacy protocols and are no longer considered secure. Though the platform will still support these protocols, it is recommended to plan to move to either TLS 1.2 or TLS 1.3.</value>
+    </data>
     <data name="minTlsCipherSuiteLabel" xml:space="preserve">
         <value>Minimum Inbound TLS Cipher Suite</value>
     </data>
