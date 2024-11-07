@@ -753,6 +753,7 @@ const getJavaContainersStack: (useIsoDateFormat: boolean) => WebAppStack = (useI
               windowsContainerSettings: {
                 javaContainer: 'TOMCAT',
                 javaContainerVersion: '10.1.28',
+                isHidden: true,
               },
               linuxContainerSettings: {
                 java11Runtime: 'TOMCAT|10.1.28-java11',
@@ -768,6 +769,7 @@ const getJavaContainersStack: (useIsoDateFormat: boolean) => WebAppStack = (useI
               windowsContainerSettings: {
                 javaContainer: 'TOMCAT',
                 javaContainerVersion: '10.1.25',
+                isHidden: true,
               },
               linuxContainerSettings: {
                 java11Runtime: 'TOMCAT|10.1.25-java11',
@@ -783,6 +785,7 @@ const getJavaContainersStack: (useIsoDateFormat: boolean) => WebAppStack = (useI
               windowsContainerSettings: {
                 javaContainer: 'TOMCAT',
                 javaContainerVersion: '10.1.23',
+                isHidden: true,
               },
               linuxContainerSettings: {
                 java11Runtime: 'TOMCAT|10.1.23-java11',
@@ -1255,6 +1258,7 @@ const getJavaContainersStack: (useIsoDateFormat: boolean) => WebAppStack = (useI
                 javaContainer: 'TOMCAT',
                 javaContainerVersion: '8.5.100',
                 endOfLifeDate: tomcat8dot5EOL,
+                isHidden: true,
               },
             },
           },
