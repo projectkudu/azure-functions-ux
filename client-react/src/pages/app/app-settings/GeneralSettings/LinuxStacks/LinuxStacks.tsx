@@ -41,7 +41,6 @@ const LinuxStacks: React.FC<PropsType> = props => {
 
   const { webAppStacks, stackVersionDetails } = useStacks(initialValues.config.properties.linuxFxVersion);
   const siteStateContext = useContext(SiteStateContext);
-  const runtimeOptions = getRuntimeStacks(webAppStacks);
   const { t } = useTranslation();
   const scenarioService = new ScenarioService(t);
 
@@ -54,6 +53,7 @@ const LinuxStacks: React.FC<PropsType> = props => {
     () => filterDeprecatedWebAppStack(webAppStacks, stackVersionDetails.runtimeStackName, stackVersionDetails.minorVersionRuntime),
     [webAppStacks, stackVersionDetails.runtimeStackName, stackVersionDetails.minorVersionRuntime]
   );
+  const runtimeOptions = useMemo(() => getRuntimeStacks(filterredWebAppStacks), [filterredWebAppStacks]);
 
   const isRuntimeStackDirty = (): boolean =>
     getRuntimeStack(values.config.properties.linuxFxVersion) !== getRuntimeStack(initialValues.config.properties.linuxFxVersion);
@@ -151,6 +151,8 @@ const LinuxStacks: React.FC<PropsType> = props => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values.config.properties.linuxFxVersion]);
+
+  console.log(runtimeStack);
 
   return (
     <>
