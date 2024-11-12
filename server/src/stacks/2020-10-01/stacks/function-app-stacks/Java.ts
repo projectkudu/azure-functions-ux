@@ -2,9 +2,9 @@ import { FunctionAppStack } from '../../models/FunctionAppStackModel';
 import { getDateString } from '../date-utilities';
 
 const getJavaStack: (useIsoDateFormat: boolean) => FunctionAppStack = (useIsoDateFormat: boolean) => {
-  // EOL source: https://docs.microsoft.com/en-us/java/azure/jdk/?view=azure-java-stable#supported-java-versions-and-update-schedule
-  const java21EOL = getDateString(new Date('2031/09/01'), useIsoDateFormat);
-  const java17EOL = getDateString(new Date('2031/09/01'), useIsoDateFormat);
+  // EOL source: https://learn.microsoft.com/en-us/java/openjdk/support#release-and-servicing-roadmap
+  const java21EOL = getDateString(new Date('2028/09/01'), useIsoDateFormat);
+  const java17EOL = getDateString(new Date('2027/09/01'), useIsoDateFormat);
   const java11EOL = getDateString(new Date('2027/09/01'), useIsoDateFormat);
   const java8EOL = getDateString(new Date('2026/11/30'), useIsoDateFormat);
 
