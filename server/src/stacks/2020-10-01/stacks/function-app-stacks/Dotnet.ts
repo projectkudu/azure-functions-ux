@@ -8,8 +8,6 @@ const getDotnetStack: (useIsoDateFormat: boolean) => FunctionAppStack = (useIsoD
   const dotnet6EOL = getDateString(new Date('2024/11/12'), useIsoDateFormat);
   const dotnet7EOL = getDateString(new Date('2024/05/14'), useIsoDateFormat);
   const dotnet8EOL = getDateString(new Date('2026/11/10'), useIsoDateFormat);
-
-  // projected as a guess - not on the support lifecycle page yet and should be adjusted when moved out of preview
   const dotnet9EOL = getDateString(new Date('2026/05/12'), useIsoDateFormat);
 
   return {
@@ -23,7 +21,7 @@ const getDotnetStack: (useIsoDateFormat: boolean) => FunctionAppStack = (useIsoD
         minorVersions: [
           {
             displayText: '.NET 9 Isolated',
-            value: '9 (LTS), isolated worker model',
+            value: '9 (STS), isolated worker model',
             stackSettings: {
               windowsRuntimeSettings: {
                 runtimeVersion: 'v9.0',
