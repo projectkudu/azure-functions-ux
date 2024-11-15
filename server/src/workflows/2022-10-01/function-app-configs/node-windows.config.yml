@@ -16,6 +16,9 @@ env:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read #This is required for actions/checkout
+      
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v4
