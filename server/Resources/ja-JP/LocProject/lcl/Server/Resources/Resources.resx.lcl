@@ -15687,6 +15687,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";minTlsVersionWarningMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[TLS 1.0 and 1.1 are considered legacy protocols and are no longer considered secure. Though the platform will still support these protocols, it is recommended to plan to move to either TLS 1.2 or TLS 1.3.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[TLS 1.0 および 1.1 はレガシ プロトコルと見なされます。セキュリティで保護されたものとは見なされなくなりました。プラットフォームは引き続きこれらのプロトコルをサポートしますが、TLS 1.2 または TLS 1.3 への移行を計画することをお勧めします。]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";minimize" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Minimize]]></Val>
