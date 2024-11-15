@@ -34,7 +34,7 @@ export class WorkflowService20221001 {
           subscription-id: \${{ secrets.__subscriptionidsecretname__ }}\n`;
       const permssions = `permissions:
       id-token: write #This is required for requesting the JWT
-      contents: read\n`;
+      contents: read #This is required for actions/checkout\n`;
       const environment = `environment:
       name: '__slotname__'
       url: \${{ steps.deploy-to-webapp.outputs.webapp-url }}`;
