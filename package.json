@@ -12,9 +12,9 @@
     "concurrently": "^8.2.2",
     "gulp": "^5.0.0",
     "gulp-prompt": "^1.2.0",
-    "husky": "^1.1.0",
+    "husky": "^9.1.6",
     "prettier": "^1.19.1",
-    "pretty-quick": "^1.11.1"
+    "pretty-quick": "^4.0.0"
   },
   "prettier": {
     "jsxBracketSameLine": true,
