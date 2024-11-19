@@ -82,7 +82,7 @@ const SiteRouter: React.FC<RouteComponentProps<SiteRouterProps>> = () => {
   const [isWordPressApplication, setIsWordPressApplication] = useState<boolean>(false);
   const [isKubeApplication, setIsKubeApplication] = useState<boolean>(false);
   const [isFlexConsumptionApplication, setIsFlexConsumptionApplication] = useState<boolean>(false);
-  const [isWorkflowApploading, setIsWorkflowApploading] = useState<boolean>(false);
+  const [isWorkflowApplication, setIsWorkflowApplication] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchDataAndSetState = useCallback(async (resourceId?: string) => {
@@ -141,7 +141,7 @@ const SiteRouter: React.FC<RouteComponentProps<SiteRouterProps>> = () => {
         setIsKubeApplication(isKubeApp(site));
         setSiteAppEditState(editMode);
         setIsFlexConsumptionApplication(isFlexConsumption(site));
-        setIsWordPressApplication(isWorkflowApp(site));
+        setIsWorkflowApplication(isWorkflowApp(site));
       }
     }
   }, []);
@@ -167,7 +167,7 @@ const SiteRouter: React.FC<RouteComponentProps<SiteRouterProps>> = () => {
                       isWordPressApp: isWordPressApplication,
                       isKubeApp: isKubeApplication,
                       isFlexConsumptionApp: isFlexConsumptionApplication,
-                      isWorkflowApp: isWordPressApplication,
+                      isWorkflowApp: isWorkflowApplication,
                       refresh: () => fetchDataAndSetState(resourceId),
                       setIsLoading,
                     }}>
