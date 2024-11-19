@@ -121,34 +121,36 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
   );
 
   const stackErrorMessage = React.useMemo(() => {
-    // Handle errors on stack
-    if (!runtimeStack) {
-      return t('noRuntimeStackFound');
-    }
-    if (!currentStackData) {
-      return t('invalidStack').format(runtimeStack);
-    }
+    if (!siteStateContext.isWorkflowApp) {
+      // Handle errors on stack
+      if (!runtimeStack) {
+        return t('noRuntimeStackFound');
+      }
+      if (!currentStackData) {
+        return t('invalidStack').format(runtimeStack);
+      }
 
-    // Handle errors on version
-    if (!StringUtils.equalsIgnoreCase(runtimeStack, WorkerRuntimeLanguages.custom)) {
-      const selectedVersionOption = options.find(option => option.key === selectedStackVersion);
-      if (!selectedVersionOption) {
-        if (isWindowsNodeApp(siteStateContext.isLinuxApp, runtimeStack)) {
-          return t('invalidWindowsNodeStackVersion');
-        } else {
-          return t('invalidNonWindowsNodeStackVersion').format(currentStackData.displayText);
+      // Handle errors on version
+      if (!StringUtils.equalsIgnoreCase(runtimeStack, WorkerRuntimeLanguages.custom)) {
+        const selectedVersionOption = options.find(option => option.key === selectedStackVersion);
+        if (!selectedVersionOption) {
+          if (isWindowsNodeApp(siteStateContext.isLinuxApp, runtimeStack)) {
+            return t('invalidWindowsNodeStackVersion');
+          } else {
+            return t('invalidNonWindowsNodeStackVersion').format(currentStackData.displayText);
+          }
+        }
+
+        if (selectedVersionOption.disabled) {
+          return t('disabledDotNetVersion').format(
+            selectedVersionOption.text,
+            runtimeStack,
+            StringUtils.equalsIgnoreCase(runtimeStack, WorkerRuntimeLanguages.dotnetIsolated) ? 'dotnet' : 'dotnet-isolated'
+          );
         }
       }
-
-      if (selectedVersionOption.disabled) {
-        return t('disabledDotNetVersion').format(
-          selectedVersionOption.text,
-          runtimeStack,
-          StringUtils.equalsIgnoreCase(runtimeStack, WorkerRuntimeLanguages.dotnetIsolated) ? 'dotnet' : 'dotnet-isolated'
-        );
-      }
     }
-  }, [runtimeStack, currentStackData, selectedStackVersion, options, siteStateContext.isLinuxApp, t]);
+  }, [runtimeStack, currentStackData, selectedStackVersion, options, siteStateContext.isLinuxApp, siteStateContext.isWorkflowApp, t]);
 
   const onMajorVersionChange = React.useCallback(
     (_, option: IDropdownOption) => {
@@ -181,6 +183,10 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
   );
 
   const getEolBanner = React.useCallback(() => {
+    if (siteStateContext.isWorkflowApp) {
+      return null;
+    }
+
     const data = options.find(option => option.key === selectedStackVersion)?.data;
     if (data) {
       const eolDate = siteStateContext.isLinuxApp
@@ -192,7 +198,7 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
     }
 
     return null;
-  }, [selectedStackVersion, options, siteStateContext, t]);
+  }, [selectedStackVersion, options, siteStateContext.isLinuxApp, siteStateContext.isWorkflowApp, t]);
 
   useEffect(() => {
     setDirtyState(initialStackVersion !== selectedStackVersion);
@@ -237,7 +243,7 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
               onChange={onMajorVersionChange}
               dirty={dirtyState}
               component={Dropdown}
-              disabled={disableAllControls}
+              disabled={disableAllControls || siteStateContext.isWorkflowApp}
               label={t('versionLabel').format(currentStackData?.displayText)}
               options={options}
             />
