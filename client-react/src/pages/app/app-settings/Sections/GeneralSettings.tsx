@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useContext } from 'react';
+import React, { useRef, useMemo } from 'react';
 import Platform from '../GeneralSettings/Platform';
 import SlotAutoSwap from '../GeneralSettings/SlotAutoSwap';
 import Stacks from '../GeneralSettings/Stacks';
@@ -14,12 +14,10 @@ import { isEqual } from 'lodash-es';
 import ClientCert from '../GeneralSettings/ClientCert/ClientCert';
 import { DeploymentCenterConstants } from '../../deployment-center/DeploymentCenterConstants';
 import StringUtils from '../../../../utils/string';
-import { SiteStateContext } from '../../../../SiteState';
 
 const GeneralSettings: React.FC<FormikProps<AppSettingsFormValues>> = props => {
   const { values } = props;
   const { site } = values;
-  const siteStateContext = useContext(SiteStateContext);
   const { t } = useTranslation();
   const scenarioCheckerRef = useRef(new ScenarioService(t));
   const scenarioChecker = scenarioCheckerRef.current!;
