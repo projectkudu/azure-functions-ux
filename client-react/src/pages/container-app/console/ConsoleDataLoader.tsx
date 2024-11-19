@@ -14,14 +14,19 @@ import { KeyBoard } from '../../../utils/CommonConstants';
 import { containerAppStyles } from '../ContainerApp.styles';
 import { getTerminalDimensions } from '../xtermHelper';
 import { consoleStyles, dialogFooterStyles, dialogTitleStyles } from './ConsoleDataLoader.styles';
+import { Text } from '@fluentui/react/lib/Text';
 
 export interface ConsoleDataLoaderProps {
   resourceId: string;
-  execEndpoint?: string;
+  execEndpoint?: string; // To be deprecated
+  mode?: 'exec' | 'debug';
+  endpoint?: string;
 }
 
 const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
   const portalCommunicator = useContext(PortalContext);
+  const endpoint = !!props.mode ? props.endpoint : props.execEndpoint;
+  const isDebug = props.mode === 'debug';
 
   const { width, height } = useWindowSize();
   const { t } = useTranslation();
@@ -67,10 +72,10 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
       resizeHandler(width, height);
     }
 
-    toggleHideDialog(!props.execEndpoint);
+    toggleHideDialog(!endpoint);
     setSelectedKey(options[0]);
     setCustomTextField('');
-  }, [props.execEndpoint]);
+  }, [endpoint]);
 
   useEffect(() => {
     return () => debouncedResizeHandler.cancel();
@@ -80,8 +85,13 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
     debouncedResizeHandler(width, height);
   }, [width, height]);
 
-  const getServerEndpoint = (execEndpoint: string, token: string, startUpCommand: string) => {
-    return `${execEndpoint}?token=${token}&command=${startUpCommand}`;
+  const getWsUrl = (endpoint: string, token: string, startUpCommand?: string) => {
+    const url = new URL(endpoint);
+    url.searchParams.append('token', token);
+    if (startUpCommand) {
+      url.searchParams.append('command', startUpCommand);
+    }
+    return url.toString();
   };
 
   const processMessageBlob = async (data: Blob) => {
@@ -157,7 +167,7 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
 
   const dialogContentProps: IDialogContentProps = {
     type: DialogType.normal,
-    title: t('containerApp_console_chooseStartUpCommand'),
+    title: isDebug ? t('containerApp_console_connectToDebugConsole') : t('containerApp_console_chooseStartUpCommand'),
     styles: dialogTitleStyles(),
     showCloseButton: false,
   };
@@ -173,12 +183,17 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
     }
 
     toggleHideDialog();
+    if (isDebug) {
+      // Not using i18n because this is a console message
+      updateConsoleText('Connecting to debug console...\r\n');
+    }
 
-    const execEndpointBefore = props.execEndpoint;
+    const endpointBefore = endpoint;
     ContainerAppService.getAuthToken(props.resourceId).then(authTokenResponse => {
-      if (execEndpointBefore === props.execEndpoint) {
-        const serverEndpoint = getServerEndpoint(props.execEndpoint || '', authTokenResponse.data.properties.token, command);
-        ws.current = new WebSocket(serverEndpoint);
+      if (endpointBefore === endpoint) {
+        const token = authTokenResponse.data.properties.token;
+        const wsUrl = isDebug ? getWsUrl(endpoint || '', token) : getWsUrl(endpoint || '', token, command);
+        ws.current = new WebSocket(wsUrl);
 
         ws.current.onmessage = async (event: MessageEvent) => {
           if (event.data instanceof Blob) {
@@ -254,7 +269,11 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
     <div className={containerAppStyles.divContainer}>
       <XTerm ref={terminalRef} onData={onData} onKey={onKey} />
       <Dialog hidden={hideDialog} dialogContentProps={dialogContentProps} modalProps={modalProps} forceFocusInsideTrap={false}>
-        <ChoiceGroup selectedKey={selectedKey.key} onChange={(_, option) => setSelectedKey(option!)} options={options} />
+        {isDebug ? (
+          <Text>{t('containerApp_console_debugConsoleDescription')}</Text>
+        ) : (
+          <ChoiceGroup selectedKey={selectedKey.key} onChange={(_, option) => setSelectedKey(option!)} options={options} />
+        )}
         <DialogFooter styles={dialogFooterStyles()}>
           <PrimaryButton
             onClick={onConnectClick}

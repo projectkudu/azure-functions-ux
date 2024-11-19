@@ -2537,6 +2537,8 @@ export class PortalResources {
   public static connectedAndFilteredMessage = 'connectedAndFilteredMessage';
   public static containerApp_console_chooseStartUpCommand = 'containerApp_console_chooseStartUpCommand';
   public static containerApp_console_failedToConnect = 'containerApp_console_failedToConnect';
+  public static containerApp_console_connectToDebugConsole = 'containerApp_console_connectToDebugConsole';
+  public static containerApp_console_debugConsoleDescription = 'containerApp_console_debugConsoleDescription';
   public static containerApp_console_connect = 'containerApp_console_connect';
   public static containerApp_console_custom = 'containerApp_console_custom';
   public static new_parenthesized = 'new_parenthesized';
