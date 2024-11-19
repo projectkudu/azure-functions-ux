@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useContext } from 'react';
 import Platform from '../GeneralSettings/Platform';
 import SlotAutoSwap from '../GeneralSettings/SlotAutoSwap';
 import Stacks from '../GeneralSettings/Stacks';
@@ -14,10 +14,12 @@ import { isEqual } from 'lodash-es';
 import ClientCert from '../GeneralSettings/ClientCert/ClientCert';
 import { DeploymentCenterConstants } from '../../deployment-center/DeploymentCenterConstants';
 import StringUtils from '../../../../utils/string';
+import { SiteStateContext } from '../../../../SiteState';
 
 const GeneralSettings: React.FC<FormikProps<AppSettingsFormValues>> = props => {
   const { values } = props;
   const { site } = values;
+  const siteStateContext = useContext(SiteStateContext);
   const { t } = useTranslation();
   const scenarioCheckerRef = useRef(new ScenarioService(t));
   const scenarioChecker = scenarioCheckerRef.current!;
@@ -32,15 +34,17 @@ const GeneralSettings: React.FC<FormikProps<AppSettingsFormValues>> = props => {
     return null;
   };
 
-  const isSiteContainer = useMemo(() => {
-    return values.config?.properties.linuxFxVersion
+  const showStack = useMemo(() => {
+    const isSiteContainer = values.config?.properties.linuxFxVersion
       ? StringUtils.equalsIgnoreCase(values.config?.properties.linuxFxVersion, DeploymentCenterConstants.sitecontainers)
       : false;
-  }, [values.config?.properties.linuxFxVersion]);
+
+    return !isSiteContainer && !siteStateContext.isWorkflowApp;
+  }, [values.config?.properties.linuxFxVersion, siteStateContext.isWorkflowApp]);
 
   return (
     <>
-      {!isSiteContainer && <Stacks {...props} />}
+      {showStack && <Stacks {...props} />}
       {/* NOTE (krmitta): Need to hide platform settings except TLS settings for KubeApp as elements within are not shown */}
       <>
         <h3>{t('platformSettings')}</h3>

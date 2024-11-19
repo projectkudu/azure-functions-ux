@@ -134,13 +134,9 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
       const selectedVersionOption = options.find(option => option.key === selectedStackVersion);
       if (!selectedVersionOption) {
         if (isWindowsNodeApp(siteStateContext.isLinuxApp, runtimeStack)) {
-          return selectedStackVersion
-            ? t('invalidWindowsNodeStackVersion').format(selectedStackVersion)
-            : t('missingWindowsNodeStackVersion');
+          return t('invalidWindowsNodeStackVersion');
         } else {
-          return selectedStackVersion
-            ? t('invalidNonWindowsNodeStackVersion').format(selectedStackVersion, currentStackData.displayText)
-            : t('missingNonWindowsNodeStackVersion').format(currentStackData.displayText);
+          return t('invalidNonWindowsNodeStackVersion').format(currentStackData.displayText);
         }
       }
 
@@ -185,10 +181,6 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
   );
 
   const getEolBanner = React.useCallback(() => {
-    if (siteStateContext.isWorkflowApp) {
-      return null;
-    }
-
     const data = options.find(option => option.key === selectedStackVersion)?.data;
     if (data) {
       const eolDate = siteStateContext.isLinuxApp
@@ -200,7 +192,7 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
     }
 
     return null;
-  }, [selectedStackVersion, options, siteStateContext.isLinuxApp, siteStateContext.isWorkflowApp, t]);
+  }, [selectedStackVersion, options, siteStateContext, t]);
 
   useEffect(() => {
     setDirtyState(initialStackVersion !== selectedStackVersion);
@@ -245,7 +237,7 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
               onChange={onMajorVersionChange}
               dirty={dirtyState}
               component={Dropdown}
-              disabled={disableAllControls || siteStateContext.isWorkflowApp}
+              disabled={disableAllControls}
               label={t('versionLabel').format(currentStackData?.displayText)}
               options={options}
             />

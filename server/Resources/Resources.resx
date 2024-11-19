@@ -7996,19 +7996,13 @@ Set to "External URL" to use an API definition that is hosted elsewhere.</value>
         <value>{0} is not a valid stack</value>
     </data>
     <data name="invalidWindowsNodeStackVersion" xml:space="preserve">
-        <value>'{0}' is not a valid Node.js version. Please go to Environment variables to update WEBSITE_NODE_DEFAULT_VERSION app setting, or select a valid version if applicable.</value>
-    </data>
-    <data name="missingWindowsNodeStackVersion" xml:space="preserve">
-        <value>Node.js version is missing. Please go to Environment variables to add WEBSITE_NODE_DEFAULT_VERSION app setting, or select a valid version if applicable.</value>
+        <value>Node.js version is missing or invalid. Please select a valid version or go to Environment variables to add/update WEBSITE_NODE_DEFAULT_VERSION app setting</value>
     </data>
     <data name="invalidNonWindowsNodeStackVersion" xml:space="preserve">
-        <value>'{0}' is not a valid {1} version. Please select a valid version if applicable.</value>
-    </data>
-    <data name="missingNonWindowsNodeStackVersion" xml:space="preserve">
-        <value>{0} version is missing. Please select a valid version if applicable.</value>
+        <value>{0} version is missing or invalid. Please select a valid version</value>
     </data>
     <data name="disabledDotNetVersion" xml:space="preserve">
-        <value>The selected version '{0}' does not match with the stack {1}. Please go to Environment Variables to update FUNCTIONS_WORKER_RUNTIME to {2}, or select a valid .NET version if applicable.</value>
+        <value>The selected version '{0}' does not match with the stack {1}. Please select a valid .NET version or go to Environment Variables to add/update FUNCTIONS_WORKER_RUNTIME to {2}</value>
     </data>
     <data name="ipv4" xml:space="preserve">
         <value>IPv4</value>
