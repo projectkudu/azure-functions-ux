@@ -38,9 +38,10 @@ const GeneralSettings: React.FC<FormikProps<AppSettingsFormValues>> = props => {
     const isSiteContainer = values.config?.properties.linuxFxVersion
       ? StringUtils.equalsIgnoreCase(values.config?.properties.linuxFxVersion, DeploymentCenterConstants.sitecontainers)
       : false;
+    const showStackSettingStatus = scenarioChecker.checkScenario(ScenarioIds.showStackSettings, { site }).status;
 
-    return !isSiteContainer && !siteStateContext.isWorkflowApp;
-  }, [values.config?.properties.linuxFxVersion, siteStateContext.isWorkflowApp]);
+    return !isSiteContainer && showStackSettingStatus !== 'disabled';
+  }, [values.config?.properties.linuxFxVersion, site]);
 
   return (
     <>

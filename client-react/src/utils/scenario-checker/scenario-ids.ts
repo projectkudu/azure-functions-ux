@@ -106,6 +106,7 @@ export class ScenarioIds {
   public static readonly xenonAppRuntimeStack = 'xenonAppRuntimeStack';
   public static readonly showAppInsightsLogs = 'showAppInsightsLogs';
   public static readonly showRuntimeVersionSetting = 'showRuntimeVersionSetting';
+  public static readonly showStackSettings = 'showStackSettings';
   public static readonly deploymentCenterLogs = 'deploymentCenterLogs';
   public static readonly kuduBuildProvider = 'kuduBuildProvider';
   public static readonly dockerCompose = 'dockerCompose';
