@@ -32,15 +32,18 @@ const GeneralSettings: React.FC<FormikProps<AppSettingsFormValues>> = props => {
     return null;
   };
 
-  const isSiteContainer = useMemo(() => {
-    return values.config?.properties.linuxFxVersion
+  const showStack = useMemo(() => {
+    const isSiteContainer = values.config?.properties.linuxFxVersion
       ? StringUtils.equalsIgnoreCase(values.config?.properties.linuxFxVersion, DeploymentCenterConstants.sitecontainers)
       : false;
-  }, [values.config?.properties.linuxFxVersion]);
+    const showStackSettingStatus = scenarioChecker.checkScenario(ScenarioIds.showStackSettings, { site }).status;
+
+    return !isSiteContainer && showStackSettingStatus !== 'disabled';
+  }, [values.config?.properties.linuxFxVersion, site]);
 
   return (
     <>
-      {!isSiteContainer && <Stacks {...props} />}
+      {showStack && <Stacks {...props} />}
       {/* NOTE (krmitta): Need to hide platform settings except TLS settings for KubeApp as elements within are not shown */}
       <>
         <h3>{t('platformSettings')}</h3>
