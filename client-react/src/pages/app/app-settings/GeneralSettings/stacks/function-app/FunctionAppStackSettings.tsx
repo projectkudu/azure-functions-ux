@@ -121,36 +121,38 @@ const FunctionAppStackSettings: React.FC<StackProps> = props => {
   );
 
   const stackErrorMessage = React.useMemo(() => {
-    if (!siteStateContext.isWorkflowApp) {
-      // Handle errors on stack
-      if (!runtimeStack) {
-        return t('noRuntimeStackFound');
-      }
-      if (!currentStackData) {
-        return t('invalidStack').format(runtimeStack);
+    // Handle errors on stack
+    if (!runtimeStack) {
+      return t('noRuntimeStackFound');
+    }
+    if (!currentStackData) {
+      return t('invalidStack').format(runtimeStack);
+    }
+
+    // Handle errors on version
+    if (!StringUtils.equalsIgnoreCase(runtimeStack, WorkerRuntimeLanguages.custom)) {
+      const selectedVersionOption = options.find(option => option.key === selectedStackVersion);
+      if (!selectedVersionOption) {
+        if (isWindowsNodeApp(siteStateContext.isLinuxApp, runtimeStack)) {
+          return selectedStackVersion
+            ? t('invalidWindowsNodeStackVersion').format(selectedStackVersion)
+            : t('missingWindowsNodeStackVersion');
+        } else {
+          return selectedStackVersion
+            ? t('invalidNonWindowsNodeStackVersion').format(selectedStackVersion, currentStackData.displayText)
+            : t('missingNonWindowsNodeStackVersion').format(currentStackData.displayText);
+        }
       }
 
-      // Handle errors on version
-      if (!StringUtils.equalsIgnoreCase(runtimeStack, WorkerRuntimeLanguages.custom)) {
-        const selectedVersionOption = options.find(option => option.key === selectedStackVersion);
-        if (!selectedVersionOption) {
-          if (isWindowsNodeApp(siteStateContext.isLinuxApp, runtimeStack)) {
-            return t('invalidWindowsNodeStackVersion');
-          } else {
-            return t('invalidNonWindowsNodeStackVersion').format(currentStackData.displayText);
-          }
-        }
-
-        if (selectedVersionOption.disabled) {
-          return t('disabledDotNetVersion').format(
-            selectedVersionOption.text,
-            runtimeStack,
-            StringUtils.equalsIgnoreCase(runtimeStack, WorkerRuntimeLanguages.dotnetIsolated) ? 'dotnet' : 'dotnet-isolated'
-          );
-        }
+      if (selectedVersionOption.disabled) {
+        return t('disabledDotNetVersion').format(
+          selectedVersionOption.text,
+          runtimeStack,
+          StringUtils.equalsIgnoreCase(runtimeStack, WorkerRuntimeLanguages.dotnetIsolated) ? 'dotnet' : 'dotnet-isolated'
+        );
       }
     }
-  }, [runtimeStack, currentStackData, selectedStackVersion, options, siteStateContext.isLinuxApp, siteStateContext.isWorkflowApp, t]);
+  }, [runtimeStack, currentStackData, selectedStackVersion, options, siteStateContext.isLinuxApp, t]);
 
   const onMajorVersionChange = React.useCallback(
     (_, option: IDropdownOption) => {
