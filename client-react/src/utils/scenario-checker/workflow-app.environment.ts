@@ -22,6 +22,13 @@ export class WorkflowAppEnvironment extends FunctionAppEnvironment {
       },
     };
 
+    this.scenarioChecks[ScenarioIds.showStackSettings] = {
+      id: ScenarioIds.showStackSettings,
+      runCheck: () => {
+        return { status: 'disabled' };
+      },
+    };
+
     this.scenarioChecks[ScenarioIds.enableCustomErrorPages] = {
       id: ScenarioIds.enableCustomErrorPages,
       runCheck: () => {
