@@ -8,7 +8,7 @@ import { ScenarioService } from '../../../../utils/scenario-checker/scenario.ser
 import { AppSettingsFormValues } from '../AppSettings.types';
 import { PermissionsContext, SiteContext } from '../Contexts';
 import { Links } from '../../../../utils/FwLinks';
-import { IPMode, MinTlsVersion, SslState, VnetPrivatePortsCount } from '../../../../models/site/site';
+import { ClientCertMode, IPMode, MinTlsVersion, SslState, VnetPrivatePortsCount } from '../../../../models/site/site';
 import CustomBanner from '../../../../components/CustomBanner/CustomBanner';
 import { IDropdownOption, MessageBar, MessageBarType, mergeStyles } from '@fluentui/react';
 import { CommonConstants, ScmHosts } from '../../../../utils/CommonConstants';
@@ -111,12 +111,8 @@ const Platform: React.FC<FormikProps<AppSettingsFormValues>> = props => {
     [setFieldValue]
   );
 
-  const onHttp20EnabledChange = (event: React.FormEvent<HTMLDivElement>, option: { key: boolean }) => {
+  const onHttp20EnabledChange = (_, option: { key: boolean }) => {
     props.setFieldValue('config.properties.http20ProxyFlag', 0);
-    if (option.key) {
-      props.setFieldValue('site.properties.clientCertEnabled', false);
-    }
-
     props.setFieldValue('config.properties.http20Enabled', option.key);
   };
 

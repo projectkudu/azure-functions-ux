@@ -14,7 +14,7 @@ import {
 } from './AppSettings.types';
 import { sortBy, isEqual } from 'lodash-es';
 import { ArmArray, ArmObj } from '../../../models/arm-obj';
-import { Site, PublishingCredentialPolicies, MinTlsVersion } from '../../../models/site/site';
+import { Site, PublishingCredentialPolicies, MinTlsVersion, ClientCertMode } from '../../../models/site/site';
 import {
   SiteConfig,
   ArmAzureStorageMount,
@@ -29,7 +29,7 @@ import { NameValuePair } from '../../../models/name-value-pair';
 import StringUtils from '../../../utils/string';
 import { CommonConstants } from '../../../utils/CommonConstants';
 import { KeyValue } from '../../../models/portal-models';
-import { isFlexConsumption, isFunctionApp, isWindowsCode } from '../../../utils/arm-utils';
+import { isFlexConsumption, isFunctionApp, isLinuxApp, isWindowsCode, isWindowsContainer } from '../../../utils/arm-utils';
 import { IconConstants } from '../../../utils/constants/IconConstants';
 import { ThemeExtended } from '../../../theme/SemanticColorsExtended';
 import { TFunction } from 'i18next';
@@ -93,7 +93,7 @@ export const convertStateToForm = (props: StateToFormParams): AppSettingsFormVal
   const formAppSetting = getFormAppSetting(appSettings, slotConfigNames);
 
   return {
-    site,
+    site: getCleanedSite(site),
     basicPublishingCredentialsPolicies: getFormBasicPublishingCredentialsPolicies(basicPublishingCredentialsPolicies),
     config: getCleanedConfig(config),
     appSettings: formAppSetting,
@@ -110,6 +110,23 @@ export const convertStateToForm = (props: StateToFormParams): AppSettingsFormVal
     ),
     azureStorageMounts: getFormAzureStorageMount(azureStorageMounts, slotConfigNames),
     errorPages: getFormErrorPages(errorPages),
+  };
+};
+
+export const getCleanedSite = (site: ArmObj<Site>) => {
+  let sshEnabled = site.properties.sshEnabled;
+  sshEnabled = (isLinuxApp(site) || isWindowsContainer(site)) && sshEnabled === null ? true : sshEnabled;
+  const functionsRuntimeAdminIsolationEnabled = !!site.properties.functionsRuntimeAdminIsolationEnabled;
+  const clientCertMode = site.properties.clientCertEnabled ? site.properties.clientCertMode : ClientCertMode.Ignore;
+
+  return {
+    ...site,
+    properties: {
+      ...site.properties,
+      sshEnabled,
+      functionsRuntimeAdminIsolationEnabled,
+      clientCertMode,
+    },
   };
 };
 
@@ -174,6 +191,13 @@ export const convertFormToState = (
   oldSlotConfigNames: ArmObj<SlotConfigNames>
 ): ApiSetupReturn => {
   const site = { ...values.site };
+  const { clientCertMode, ClientCertEnabled } = getClientCertValues(
+    initialValues.site.properties.clientCertMode,
+    values.site.properties.clientCertMode
+  );
+  site.properties.clientCertMode = clientCertMode;
+  site.properties.clientCertEnabled = ClientCertEnabled;
+
   const slotConfigNames = getStickySettings(values.appSettings, values.connectionStrings, values.azureStorageMounts, oldSlotConfigNames);
   const slotConfigNamesModified = isSlotConfigNamesModified(oldSlotConfigNames, slotConfigNames);
 
@@ -238,6 +262,15 @@ export const getStorageMountAccessKey = (value: FormAzureStorageMounts) => {
     ? `${AppSettingReference.prefix}${appSettings}${AppSettingReference.suffix}`
     : accessKey;
 };
+
+export function getClientCertValues(initialClientCertMode: string, currentClientCertMode: string) {
+  const isClientCertModeIgnore = currentClientCertMode === ClientCertMode.Ignore;
+
+  return {
+    clientCertMode: isClientCertModeIgnore ? initialClientCertMode : currentClientCertMode,
+    ClientCertEnabled: !isClientCertModeIgnore,
+  };
+}
 
 export function getStickySettings(
   appSettings: FormAppSetting[],

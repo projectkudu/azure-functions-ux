@@ -1,26 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { settingsWrapper } from '../../AppSettingsForm';
 import { Field, FormikProps } from 'formik';
-import RadioButtonNoFormik from '../../../../../components/form-controls/RadioButtonNoFormik';
 import { useTranslation } from 'react-i18next';
 import { PermissionsContext, SiteContext } from '../../Contexts';
 import TextField from '../../../../../components/form-controls/TextField';
-import { Stack, PanelType, IChoiceGroupOption } from '@fluentui/react';
+import { Stack, PanelType, IChoiceGroupOption, MessageBarType } from '@fluentui/react';
 import IconButton from '../../../../../components/IconButton/IconButton';
 import EditClientExclusionPaths from './EditClientExclusionPaths';
 import { AppSettingsFormValues } from '../../AppSettings.types';
 import { ScenarioService } from '../../../../../utils/scenario-checker/scenario.service';
 import { ScenarioIds } from '../../../../../utils/scenario-checker/scenario-ids';
 import CustomPanel from '../../../../../components/CustomPanel/CustomPanel';
-import { ClientCertMode, Site } from '../../../../../models/site/site';
+import { ClientCertMode, MinTlsVersion, Site } from '../../../../../models/site/site';
 import { ArmObj } from '../../../../../models/arm-obj';
-
-enum CompositeClientCertMode {
-  Require = 'Require',
-  Allow = 'Allow',
-  Optional = 'Optional',
-  Ignore = 'Ignore',
-}
+import RadioButton from '../../../../../components/form-controls/RadioButton';
+import CustomBanner from '../../../../../components/CustomBanner/CustomBanner';
 
 const ClientCert: React.FC<FormikProps<AppSettingsFormValues>> = props => {
   const { values, setFieldValue, initialValues } = props;
@@ -29,53 +23,18 @@ const ClientCert: React.FC<FormikProps<AppSettingsFormValues>> = props => {
   const { app_write, editable, saving } = useContext(PermissionsContext);
   const disableAllControls = !app_write || !editable || saving;
   const [showPanel, setShowPanel] = useState(false);
-
-  const onClientCertModeChange = (e: any, newValue: IChoiceGroupOption) => {
-    switch (newValue.key) {
-      case CompositeClientCertMode.Require:
-        setFieldValue('site.properties.clientCertEnabled', true);
-        setFieldValue('site.properties.clientCertMode', ClientCertMode.Required);
-        break;
-      case CompositeClientCertMode.Allow:
-        setFieldValue('site.properties.clientCertEnabled', true);
-        setFieldValue('site.properties.clientCertMode', ClientCertMode.Optional);
-        break;
-      case CompositeClientCertMode.Optional:
-        setFieldValue('site.properties.clientCertEnabled', true);
-        setFieldValue('site.properties.clientCertMode', ClientCertMode.OptionalInteractiveUser);
-        break;
-      case CompositeClientCertMode.Ignore:
-        setFieldValue('site.properties.clientCertEnabled', false);
-        break;
-      default:
-        setFieldValue('site.properties.clientCertEnabled', false);
-        break;
-    }
-  };
-
-  const getCompositeClientCertMode = (siteArm: ArmObj<Site>): CompositeClientCertMode => {
-    if (siteArm.properties.clientCertEnabled) {
-      return siteArm.properties.clientCertMode === ClientCertMode.Required
-        ? CompositeClientCertMode.Require
-        : siteArm.properties.clientCertMode === ClientCertMode.Optional
-        ? CompositeClientCertMode.Allow
-        : CompositeClientCertMode.Optional;
-    }
-
-    return CompositeClientCertMode.Ignore;
-  };
+  const [disableOptionalInteractiveUserOption, setDisableOptionalInteractiveUserOption] = useState(false);
+  const [clientCertWarningMessage, setClientCertWarningMessage] = useState('');
 
   const getClientCertInfoBubbleMessage = (siteArm: ArmObj<Site>): string => {
-    const mode = getCompositeClientCertMode(siteArm);
-
-    switch (mode) {
-      case CompositeClientCertMode.Require:
+    switch (siteArm.properties.clientCertMode) {
+      case ClientCertMode.Required:
         return t('clientCertificateModeRequiredInfoBubbleMessage');
-      case CompositeClientCertMode.Allow:
-        return t('clientCertificateModeAllowInfoBubbleMessage');
-      case CompositeClientCertMode.Optional:
+      case ClientCertMode.Optional:
         return t('clientCertificateModeOptionalInfoBubbleMessage');
-      case CompositeClientCertMode.Ignore:
+      case ClientCertMode.OptionalInteractiveUser:
+        return t('clientCertificateModeOptionalInteractiveUserInfoBubbleMessage');
+      case ClientCertMode.Ignore:
         return t('clientCertificateModeIgnoreInfoBubbleMessage');
       default:
         return '';
@@ -84,6 +43,7 @@ const ClientCert: React.FC<FormikProps<AppSettingsFormValues>> = props => {
 
   const scenarioChecker = new ScenarioService(t);
   const clientCertEnabled = scenarioChecker.checkScenario(ScenarioIds.incomingClientCertEnabled, { site });
+
   const openClientExclusionPathPanel = () => {
     setShowPanel(true);
   };
@@ -95,38 +55,55 @@ const ClientCert: React.FC<FormikProps<AppSettingsFormValues>> = props => {
     setShowPanel(false);
   };
 
+  useEffect(() => {
+    const http20EnabledOrTLSVersion12 =
+      values.config.properties.http20Enabled || values.config.properties.minTlsVersion === MinTlsVersion.tLS13;
+    const isClientCertModeOptionalInteractiveUser = values.site.properties.clientCertMode === ClientCertMode.OptionalInteractiveUser;
+
+    setDisableOptionalInteractiveUserOption(http20EnabledOrTLSVersion12);
+    setClientCertWarningMessage(http20EnabledOrTLSVersion12 ? t('clientCertificateWarningMessage') : '');
+    if (isClientCertModeOptionalInteractiveUser && http20EnabledOrTLSVersion12) {
+      setFieldValue('site.properties.clientCertMode', ClientCertMode.Ignore);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values.config.properties.http20Enabled, values.config.properties.minTlsVersion, values.site.properties.clientCertMode]);
+
   return scenarioChecker.checkScenario(ScenarioIds.incomingClientCertSupported, { site }).status !== 'disabled' ? (
     <>
       <h3>{t('incomingClientCertificates')}</h3>
       <div className={settingsWrapper}>
-        <RadioButtonNoFormik
-          dirty={getCompositeClientCertMode(values.site) !== getCompositeClientCertMode(initialValues.site)}
+        {clientCertWarningMessage && (
+          <CustomBanner id="clinet-cert-warning" message={clientCertWarningMessage} type={MessageBarType.warning} undocked={true} />
+        )}
+        <Field
+          name={'site.properties.clientCertMode'}
+          component={RadioButton}
+          dirty={values.site.properties.clientCertMode !== initialValues.site.properties.clientCertMode}
           label={t('clientCertificateMode')}
           id="incoming-client-certificate-mode"
           ariaLabelledBy={`incoming-client-certificate-mode-label`}
-          disabled={disableAllControls || clientCertEnabled.status === 'disabled' || values.config.properties.http20Enabled}
+          disabled={disableAllControls || clientCertEnabled.status === 'disabled'}
           upsellMessage={clientCertEnabled.status === 'disabled' ? clientCertEnabled.data : ''}
-          selectedKey={getCompositeClientCertMode(values.site)}
           infoBubbleMessage={getClientCertInfoBubbleMessage(values.site)}
           options={[
             {
-              key: CompositeClientCertMode.Require,
-              text: t('clientCertificateModeRequire'),
+              key: ClientCertMode.Required,
+              text: t('clientCertificateModeRequired'),
             },
             {
-              key: CompositeClientCertMode.Allow,
-              text: t('clientCertificateModeAllow'),
-            },
-            {
-              key: CompositeClientCertMode.Optional,
+              key: ClientCertMode.Optional,
               text: t('clientCertificateModeOptional'),
             },
             {
-              key: CompositeClientCertMode.Ignore,
+              key: ClientCertMode.OptionalInteractiveUser,
+              text: t('clientCertificateModeOptionalInteractiveUser'),
+              disabled: disableOptionalInteractiveUserOption,
+            },
+            {
+              key: ClientCertMode.Ignore,
               text: t('clientCertificateModeIgnore'),
             },
           ]}
-          onChange={onClientCertModeChange}
         />
         <Stack horizontal>
           <Field
@@ -150,7 +127,7 @@ const ClientCert: React.FC<FormikProps<AppSettingsFormValues>> = props => {
             id={`edit-client-cert-exclusion-paths`}
             ariaLabel={t('editCertificateExlusionPaths')}
             title={t('editCertificateExlusionPaths')}
-            disabled={disableAllControls || !values.site.properties.clientCertEnabled}
+            disabled={disableAllControls || values.site.properties.clientCertMode === ClientCertMode.Ignore}
             onClick={openClientExclusionPathPanel}
           />
         </Stack>
