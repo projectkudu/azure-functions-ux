@@ -56,13 +56,13 @@ const ClientCert: React.FC<FormikProps<AppSettingsFormValues>> = props => {
   };
 
   useEffect(() => {
-    const http20EnabledOrTLSVersion12 =
+    const http20EnabledOrMinTLSVersion13 =
       values.config.properties.http20Enabled || values.config.properties.minTlsVersion === MinTlsVersion.tLS13;
     const isClientCertModeOptionalInteractiveUser = values.site.properties.clientCertMode === ClientCertMode.OptionalInteractiveUser;
 
-    setDisableOptionalInteractiveUserOption(http20EnabledOrTLSVersion12);
-    setClientCertWarningMessage(http20EnabledOrTLSVersion12 ? t('clientCertificateWarningMessage') : '');
-    if (isClientCertModeOptionalInteractiveUser && http20EnabledOrTLSVersion12) {
+    setDisableOptionalInteractiveUserOption(http20EnabledOrMinTLSVersion13);
+    setClientCertWarningMessage(http20EnabledOrMinTLSVersion13 ? t('clientCertificateWarningMessage') : '');
+    if (isClientCertModeOptionalInteractiveUser && http20EnabledOrMinTLSVersion13) {
       setFieldValue('site.properties.clientCertMode', ClientCertMode.Ignore);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
