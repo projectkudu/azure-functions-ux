@@ -35,19 +35,9 @@ export class WorkflowService20221001 {
       const permssions = `permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout\n`;
-      const environment = `environment:
-      name: '__slotname__'
-      url: \${{ steps.deploy-to-webapp.outputs.webapp-url }}`;
-
       workflowFile = workflowFile.replace(new RegExp(publishProfilePlaceholder, 'gi'), '');
       workflowFile = workflowFile.replace(new RegExp(loginToAzureStepPlaceholder, 'gi'), loginToAzureStep);
       workflowFile = workflowFile.replace(new RegExp(permissionsPlaceholder, 'gi'), permssions);
-
-      if (variables?.isRemoveEnvEnabled) {
-        workflowFile = workflowFile.replace(new RegExp(environmentPlaceholder, 'gi'), '');
-      } else {
-        workflowFile = workflowFile.replace(new RegExp(environmentPlaceholder, 'gi'), environment);
-      }
     } else {
       if (variables?.isFlexConsumption) {
         const flexConsumptionPublishProfile = `publish-profile: \${{ secrets.__publishingprofilesecretname__ }}
@@ -62,6 +52,15 @@ export class WorkflowService20221001 {
       }
       workflowFile = workflowFile.replace(new RegExp(loginToAzureStepPlaceholder, 'gi'), '');
       workflowFile = workflowFile.replace(new RegExp(permissionsPlaceholder, 'gi'), '');
+    }
+
+    const environment = `environment:
+    name: '__slotname__'
+    url: \${{ steps.deploy-to-webapp.outputs.webapp-url }}`;
+    if (variables?.isRemoveEnvEnabled) {
+      workflowFile = workflowFile.replace(new RegExp(environmentPlaceholder, 'gi'), '');
+    } else {
+      workflowFile = workflowFile.replace(new RegExp(environmentPlaceholder, 'gi'), environment);
     }
 
     Object.keys(variables).forEach(variableKey => {
