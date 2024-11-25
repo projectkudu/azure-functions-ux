@@ -54,8 +54,8 @@ export class WorkflowService20221001 {
     }
 
     const environment = `environment:
-    name: '__slotname__'
-    url: \${{ steps.deploy-to-webapp.outputs.webapp-url }}`;
+      name: '__slotname__'
+      url: \${{ steps.deploy-to-webapp.outputs.webapp-url }}`;
     if (variables?.isRemoveEnvEnabled) {
       workflowFile = workflowFile.replace(new RegExp(environmentPlaceholder, 'gi'), '');
     } else {
