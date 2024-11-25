@@ -57,6 +57,7 @@ export enum ClientCertMode {
   Required = 'Required',
   Optional = 'Optional',
   OptionalInteractiveUser = 'OptionalInteractiveUser',
+  Ignore = 'Ignore',
 }
 
 export enum MinTlsVersion {
@@ -139,7 +140,7 @@ export interface Site {
   clientAffinityEnabled: boolean;
   clientAffinityProxyEnabled: boolean;
   clientCertEnabled: boolean;
-  clientCertMode: ClientCertMode;
+  clientCertMode: string;
   clientCertExclusionPaths: string;
   hostNamesDisabled: boolean;
   domainVerificationIdentifiers: string;
