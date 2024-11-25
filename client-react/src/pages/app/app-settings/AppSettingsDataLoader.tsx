@@ -159,7 +159,7 @@ const AppSettingsDataLoader: React.FC<AppSettingsDataLoaderProps> = props => {
     }
 
     const isLinux = isLinuxApp(site.data);
-    const windowsContainer = isWindowsContainer(site.data);
+
     // Get stacks response
     if (!loadingFailed) {
       if (isFunctionApp(site.data)) {
@@ -247,20 +247,10 @@ const AppSettingsDataLoader: React.FC<AppSettingsDataLoaderProps> = props => {
         setEditable(false);
       }
 
-      const sshEnabled = site.data.properties.sshEnabled;
-      const functionsRuntimeAdminIsolationEnabled: boolean = !!site.data.properties.functionsRuntimeAdminIsolationEnabled;
-
       setInitialValues({
         ...convertStateToForm({
           // @note(krmitta): Manually over-writing since the api returns null when sshEnabled property is not set in the database but the default is true
-          site: {
-            ...site.data,
-            properties: {
-              ...site.data.properties,
-              sshEnabled: (isLinux || windowsContainer) && sshEnabled === null ? true : sshEnabled,
-              functionsRuntimeAdminIsolationEnabled: functionsRuntimeAdminIsolationEnabled,
-            },
-          },
+          site: site.data,
           config: webConfig.data,
           metadata: metadata.metadata.success ? metadata.data : null,
           connectionStrings: connectionStrings.metadata.success ? connectionStrings.data : null,
