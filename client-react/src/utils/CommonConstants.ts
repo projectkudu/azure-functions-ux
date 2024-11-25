@@ -413,7 +413,6 @@ export class ExperimentationConstants {
   };
 
   public static FlightVariable = {
-    removeDeployEnvironment: 'remove-deploy-environment',
     removeDeployEnvironmentWebApp: 'remove-deploy-environment-webapp',
     enableSidecarMigration: 'enable-sidecar-migration',
     showDCReactView: 'show-dc-reactview',
