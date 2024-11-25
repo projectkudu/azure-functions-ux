@@ -78,13 +78,13 @@ const DeploymentCenterCodeSettings: React.FC<DeploymentCenterFieldProps<Deployme
   const [isVstsSetup, setIsVstsSetup] = useState(false);
   const [isTfsOrVsoSetup, setIsTfsOrVsoSetup] = useState(false);
   const [isUsingExistingOrAvailableWorkflowConfig, setIsUsingExistingOrAvailableWorkflowConfig] = useState(false);
-  const [isRemoveEnvEnabled, setIsRemoveEnvEnabled] = useState(false);
+  const [isRemoveEnvWebAppEnabled, setIsRemoveEnvWebAppEnabled] = useState(false);
   useEffect(() => {
     let isSubscribed = true;
 
-    portalContext?.getBooleanFlight(ExperimentationConstants.FlightVariable.removeDeployEnvironment).then(hasFlightEnabled => {
+    portalContext?.getBooleanFlight(ExperimentationConstants.FlightVariable.removeDeployEnvironmentWebApp).then(hasFlightEnabled => {
       if (isSubscribed) {
-        setIsRemoveEnvEnabled(hasFlightEnabled);
+        setIsRemoveEnvWebAppEnabled(hasFlightEnabled);
       }
     });
 
@@ -169,7 +169,7 @@ const DeploymentCenterCodeSettings: React.FC<DeploymentCenterFieldProps<Deployme
       variables['javaContainer'] = formProps.values.javaContainer;
     }
 
-    if (isRemoveEnvEnabled) {
+    if (isRemoveEnvWebAppEnabled) {
       variables['isRemoveEnvEnabled'] = true;
     }
 
