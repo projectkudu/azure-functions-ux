@@ -7777,6 +7777,13 @@ Set to "External URL" to use an API definition that is hosted elsewhere.</value>
     <data name="containerApp_console_failedToConnect" xml:space="preserve">
         <value>Failed to connect to replica.</value>
     </data>
+    <data name="containerApp_console_connectToDebugConsole" xml:space="preserve">
+        <value>Connect to debug console</value>
+    </data>
+    <data name="containerApp_console_debugConsoleDescription" xml:space="preserve">
+        <value>In this console, enter 'exit' to terminate the debug session.</value>
+        <comment>'exit' is a command that should not be translated to other languages</comment>
+    </data>
     <data name="containerApp_console_connect" xml:space="preserve">
         <value>Connect</value>
     </data>
