@@ -164,10 +164,7 @@ const DeploymentCenterVSTSCodeLogs: React.FC<DeploymentCenterCodeLogsProps> = pr
         {urlInfo.map(info => {
           return (
             <>
-              <Link
-                className={deploymentCenterVstsCodeLogsLinkStyle}
-                onClick={() => window.open(info.url, '_blank')}
-                aria-label={info.urlText}>
+              <Link className={deploymentCenterVstsCodeLogsLinkStyle} href={info.url} target="_blank" aria-label={info.urlText}>
                 {info.urlIcon && <Icon iconName={info.urlIcon} />}
                 {info.urlText}
               </Link>
