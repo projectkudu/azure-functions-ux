@@ -94,7 +94,8 @@ const DeploymentCenterVstsBuildConfiguredView: React.FC<DeploymentCenterFieldPro
       return (
         <Link
           key="deployment-center-branch-link"
-          onClick={() => window.open(`https://dev.azure.com/${vstsAccountName}/${project}`, '_blank')}
+          href={`https://dev.azure.com/${vstsAccountName}/${project}`}
+          target="_blank"
           aria-label={project}>
           {project}
           <Icon id={`repo-button`} iconName={'NavigateExternalInline'} />
@@ -106,7 +107,7 @@ const DeploymentCenterVstsBuildConfiguredView: React.FC<DeploymentCenterFieldPro
   const getRepoLink = () => {
     if (repoUrl) {
       return (
-        <Link key="deployment-center-branch-link" onClick={() => window.open(repoUrl, '_blank')} aria-label={`${repo}`}>
+        <Link key="deployment-center-branch-link" href={repoUrl} target="_blank" aria-label={`${repo}`}>
           {`${repo} `}
           <Icon id={`repo-button`} iconName={'NavigateExternalInline'} />
         </Link>

@@ -318,7 +318,7 @@ const DeploymentCenterGitHubActionsCodeLogs: React.FC<DeploymentCenterCodeLogsPr
         message: run.head_commit.message,
         commit: run.head_commit.id.substr(0, 7),
         logSource: (
-          <Link key="github-actions-logs-link" onClick={() => window.open(run.html_url, '_blank')}>
+          <Link key="github-actions-logs-link" href={run.html_url} target="_blank">
             {t('deploymentCenterBuildDeployLogSource')}
             <Icon id={`ga-logs`} iconName={'NavigateExternalInline'} />
           </Link>
