@@ -69,7 +69,7 @@ const DeploymentCenterExternalConfiguredView: React.FC<DeploymentCenterFieldProp
   const getBranchLink = () => {
     if (!isBranchInfoMissing) {
       return (
-        <Link key="deployment-center-branch-link" onClick={() => window.open(repo, '_blank')}>
+        <Link key="deployment-center-branch-link" href={repo} target="_blank">
           {`${branch} `}
           <Icon id={`branch-button`} iconName={'NavigateExternalInline'} />
         </Link>
