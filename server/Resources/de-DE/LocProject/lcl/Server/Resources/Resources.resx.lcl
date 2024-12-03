@@ -3327,24 +3327,6 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";clientCertificateModeAllow" ItemType="0;.resx" PsrId="211" Leaf="true">
-        <Str Cat="Text">
-          <Val><![CDATA[Allow]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Zulassen]]></Val>
-          </Tgt>
-        </Str>
-        <Disp Icon="Str" />
-      </Item>
-      <Item ItemId=";clientCertificateModeAllowInfoBubbleMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
-        <Str Cat="Text">
-          <Val><![CDATA[Clients will be prompted for a certificate, if no certificate is provided fallback to SSO or other means of authentication. Unauthenticated requests will be blocked.]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Clients werden zur Eingabe eines Zertifikats aufgefordert, wenn kein Zertifikat als Fallback auf SSO oder andere Authentifizierungsmethoden bereitgestellt wird. Nicht authentifizierte Anforderungen werden blockiert.]]></Val>
-          </Tgt>
-        </Str>
-        <Disp Icon="Str" />
-      </Item>
       <Item ItemId=";clientCertificateModeIgnore" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Ignore]]></Val>
@@ -3374,6 +3356,27 @@
       </Item>
       <Item ItemId=";clientCertificateModeOptionalInfoBubbleMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
+          <Val><![CDATA[Clients will be prompted for a certificate, if no certificate is provided fallback to SSO or other means of authentication. Unauthenticated requests will be blocked.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Clients werden zur Eingabe eines Zertifikats aufgefordert, wenn kein Zertifikat als Fallback auf SSO oder andere Authentifizierungsmethoden bereitgestellt wird. Nicht authentifizierte Anforderungen werden blockiert.]]></Val>
+          </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Clients will not be prompted for a certificate by default. Unless the request can be authenticated through other means (like SSO), it will be blocked.]]></Val>
+          </Prev>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";clientCertificateModeOptionalInteractiveUser" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Optional Interactive User]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Optionaler interaktiver Benutzer]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";clientCertificateModeOptionalInteractiveUserInfoBubbleMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
           <Val><![CDATA[Clients will not be prompted for a certificate by default. Unless the request can be authenticated through other means (like SSO), it will be blocked.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Clients werden standardmäßig nicht zur Eingabe eines Zertifikats aufgefordert. Sofern die Anforderung nicht auf andere Weise (z. B. SSO) authentifiziert werden kann, wird sie blockiert.]]></Val>
@@ -3381,7 +3384,7 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
-      <Item ItemId=";clientCertificateModeRequire" ItemType="0;.resx" PsrId="211" Leaf="true">
+      <Item ItemId=";clientCertificateModeRequired" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Require]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
@@ -3395,6 +3398,15 @@
           <Val><![CDATA[All requests must be authenticated through a client certificate.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Alle Anforderungen müssen über ein Clientzertifikat authentifiziert werden.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";clientCertificateWarningMessage" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Client certificate mode "Optional Interactive User" and client certificate exclusion path regardless of client certificate mode are not compatible with Http version 2.0 or minimum inbound TLS Version 1.3]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Der Clientzertifikatmodus „Optionaler interaktiver Benutzer“ und der Pfad zum Ausschluss des Clientzertifikats sind unabhängig vom Clientzertifikatmodus nicht mit HTTP-Version 2.0 oder der TLS-Mindestversion 1.3 für eingehenden Datenverkehr kompatibel.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -3969,11 +3981,29 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";containerApp_console_connectToDebugConsole" ItemType="0;.resx" PsrId="211" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Connect to debug console]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Herstellen einer Verbindung mit der Debugkonsole]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";containerApp_console_custom" ItemType="0;.resx" PsrId="211" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Custom]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Benutzerdefiniert]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";containerApp_console_debugConsoleDescription" ItemType="0;.resx" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[In this console, enter 'exit' to terminate the debug session.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Geben Sie in dieser Konsole „beenden“ ein, um die Debugsitzung zu beenden.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
