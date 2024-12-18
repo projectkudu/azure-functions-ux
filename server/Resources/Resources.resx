@@ -5247,7 +5247,7 @@ Set to "External URL" to use an API definition that is hosted elsewhere.</value>
         <value>Client certificate mode</value>
     </data>
     <data name="clientCertificateModeRequired" xml:space="preserve">
-        <value>Require</value>
+        <value>Required</value>
     </data>
     <data name="clientCertificateModeOptional" xml:space="preserve">
         <value>Optional</value>
