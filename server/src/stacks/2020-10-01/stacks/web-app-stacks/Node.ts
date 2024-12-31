@@ -2,6 +2,9 @@ import { WebAppStack } from '../../models/WebAppStackModel';
 import { getDateString } from '../date-utilities';
 
 const getNodeStack: (useIsoDateFormat: boolean) => WebAppStack = (useIsoDateFormat: boolean) => {
+  const node22EOL = getDateString(new Date('2026/04/30'), useIsoDateFormat);
+  const node20EOL = getDateString(new Date('2026/04/30'), useIsoDateFormat);
+  const node18EOL = getDateString(new Date('2025/04/30'), useIsoDateFormat);
   const node16EOL = getDateString(new Date('2023/09/11'), useIsoDateFormat);
   const node14EOL = getDateString(new Date('2023/04/30'), useIsoDateFormat);
   const node12EOL = getDateString(new Date('2022/04/01'), useIsoDateFormat);
@@ -35,6 +38,34 @@ const getNodeStack: (useIsoDateFormat: boolean) => WebAppStack = (useIsoDateForm
                 },
                 gitHubActionSettings: {
                   isSupported: true,
+                },
+              },
+            },
+          },
+        ],
+      },
+      {
+        displayText: 'Node 22',
+        value: '22',
+        minorVersions: [
+          {
+            displayText: 'Node 22 LTS',
+            value: '22-lts',
+            stackSettings: {
+              linuxRuntimeSettings: {
+                runtimeVersion: 'NODE|22-lts',
+                remoteDebuggingSupported: false,
+                isHidden: true,
+                appInsightsSettings: {
+                  isSupported: true,
+                  isDefaultOff: false,
+                },
+                gitHubActionSettings: {
+                  isSupported: true,
+                  supportedVersion: '22.x',
+                },
+                supportedFeatures: {
+                  disableSsh: true,
                 },
               },
             },
