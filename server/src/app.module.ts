@@ -6,6 +6,7 @@ import { FunctionsModule } from './functions/functions.module';
 import { DomainsModule } from './domains/domains.module';
 import { DeploymentCenterModule } from './deployment-center/deployment-center.module';
 import { StacksModule } from './stacks/stacks.module';
+import { SidecarAddOnsModule } from './sidecaraddons/sidecaraddons.module';
 import { StaticSitesModule } from './staticsites/staticsites.module';
 import { WorkflowModule } from './workflows/workflows.module';
 
@@ -19,6 +20,7 @@ import { WorkflowModule } from './workflows/workflows.module';
     DeploymentCenterModule,
     StaticSitesModule,
     StacksModule,
+    SidecarAddOnsModule,
     WorkflowModule,
     HomeModule,
   ],
