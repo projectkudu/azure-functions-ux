@@ -4,7 +4,7 @@ import { Field, FormikProps } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { PermissionsContext, SiteContext } from '../../Contexts';
 import TextField from '../../../../../components/form-controls/TextField';
-import { Stack, PanelType, IChoiceGroupOption, MessageBarType } from '@fluentui/react';
+import { Stack, PanelType, MessageBarType } from '@fluentui/react';
 import IconButton from '../../../../../components/IconButton/IconButton';
 import EditClientExclusionPaths from './EditClientExclusionPaths';
 import { AppSettingsFormValues } from '../../AppSettings.types';
