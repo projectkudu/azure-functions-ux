@@ -8,7 +8,7 @@ import { ScenarioService } from '../../../../utils/scenario-checker/scenario.ser
 import { AppSettingsFormValues } from '../AppSettings.types';
 import { PermissionsContext, SiteContext } from '../Contexts';
 import { Links } from '../../../../utils/FwLinks';
-import { ClientCertMode, IPMode, MinTlsVersion, SslState, VnetPrivatePortsCount } from '../../../../models/site/site';
+import { IPMode, MinTlsVersion, SslState, VnetPrivatePortsCount } from '../../../../models/site/site';
 import CustomBanner from '../../../../components/CustomBanner/CustomBanner';
 import { IDropdownOption, MessageBar, MessageBarType, mergeStyles } from '@fluentui/react';
 import { CommonConstants, ScmHosts } from '../../../../utils/CommonConstants';

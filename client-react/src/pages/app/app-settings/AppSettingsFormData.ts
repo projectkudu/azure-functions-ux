@@ -190,13 +190,19 @@ export const convertFormToState = (
   initialValues: AppSettingsFormValues,
   oldSlotConfigNames: ArmObj<SlotConfigNames>
 ): ApiSetupReturn => {
-  const site = { ...values.site };
-  const { clientCertMode, ClientCertEnabled } = getClientCertValues(
+  const { clientCertMode, clientCertEnabled } = getClientCertValues(
     initialValues.site.properties.clientCertMode,
     values.site.properties.clientCertMode
   );
-  site.properties.clientCertMode = clientCertMode;
-  site.properties.clientCertEnabled = ClientCertEnabled;
+
+  const site = {
+    ...values.site,
+    properties: {
+      ...values.site.properties,
+      clientCertMode: clientCertMode,
+      clientCertEnabled: clientCertEnabled,
+    },
+  };
 
   const slotConfigNames = getStickySettings(values.appSettings, values.connectionStrings, values.azureStorageMounts, oldSlotConfigNames);
   const slotConfigNamesModified = isSlotConfigNamesModified(oldSlotConfigNames, slotConfigNames);
@@ -268,7 +274,7 @@ export function getClientCertValues(initialClientCertMode: string, currentClient
 
   return {
     clientCertMode: isClientCertModeIgnore ? initialClientCertMode : currentClientCertMode,
-    ClientCertEnabled: !isClientCertModeIgnore,
+    clientCertEnabled: !isClientCertModeIgnore,
   };
 }
 
