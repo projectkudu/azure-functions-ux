@@ -6,6 +6,7 @@ import { getTerminalDimensions } from '../xtermHelper';
 import { PortalContext } from '../../../PortalContext';
 import { containerAppStyles } from '../ContainerApp.styles';
 import { TextUtilitiesService } from '../../../utils/textUtilities';
+import { liveRegionStyle } from '../console/ConsoleDataLoader.styles';
 
 export interface LogStreamProps {
   resourceId: string;
@@ -18,6 +19,7 @@ const LogStream: React.FC<LogStreamProps> = props => {
 
   const { width, height } = useWindowSize();
   const terminalRef = useRef<XTerm>(null);
+  const liveRegionRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout>();
   const xtermReady = useRef(false);
 
@@ -63,6 +65,16 @@ const LogStream: React.FC<LogStreamProps> = props => {
   useEffect(() => {
     if (terminalRef.current?.terminal && props.line) {
       terminalRef.current?.terminal.writeln(props.line);
+
+      if (liveRegionRef.current) {
+        liveRegionRef.current.textContent = props.line;
+
+        setTimeout(() => {
+          if (liveRegionRef.current) {
+            liveRegionRef.current.textContent = '';
+          }
+        }, 1000); // Clear after 1 second
+      }
     }
   }, [props.line]);
 
@@ -86,6 +98,7 @@ const LogStream: React.FC<LogStreamProps> = props => {
 
   return (
     <div className={containerAppStyles.divContainer}>
+      <div ref={liveRegionRef} aria-live="polite" style={liveRegionStyle} />
       <XTerm
         options={{
           disableStdin: true,
