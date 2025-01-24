@@ -44,6 +44,7 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
         ...(terminalRef.current.terminal.options || {}),
         cursorStyle: 'underline',
         cursorBlink: true,
+        screenReaderMode: true,
       };
 
       resizeHandler(width, height);
@@ -67,6 +68,7 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
       terminalRef.current.terminal.options = {
         ...(terminalRef.current.terminal.options || {}),
         disableStdin: true,
+        screenReaderMode: true,
       };
 
       resizeHandler(width, height);
@@ -126,6 +128,13 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
 
   const updateConsoleText = (text: string) => {
     terminalRef.current?.terminal.write(text);
+    const liveRegion = document.getElementById('live-region');
+    if (liveRegion) {
+      liveRegion.textContent = `${liveRegion.textContent || ''}${text}`;
+      setTimeout(() => {
+        liveRegion.textContent = '';
+      }, 1000); // Clear after 1 second
+    }
   };
 
   const onData = (data: string) => {
@@ -215,6 +224,7 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
           terminalRef.current.terminal.options = {
             ...(terminalRef.current.terminal.options || {}),
             disableStdin: false,
+            screenReaderMode: true,
           };
         }
       }
@@ -268,6 +278,17 @@ const ConsoleDataLoader: React.FC<ConsoleDataLoaderProps> = props => {
   return (
     <div className={containerAppStyles.divContainer}>
       <XTerm ref={terminalRef} onData={onData} onKey={onKey} />
+      <div
+        id="live-region"
+        aria-live="polite"
+        style={{
+          position: 'absolute',
+          left: '-9999px',
+          width: '1px',
+          height: '1px',
+          overflow: 'hidden',
+        }}
+      />
       <Dialog hidden={hideDialog} dialogContentProps={dialogContentProps} modalProps={modalProps} forceFocusInsideTrap={false}>
         {isDebug ? (
           <Text>{t('containerApp_console_debugConsoleDescription')}</Text>
